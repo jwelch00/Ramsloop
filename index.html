@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RamsLoop — Buy, sell, swap, borrow &amp; give at CSU</title>
+<meta name="description" content="RamsLoop: a CSU-verified student marketplace for buying, selling, swapping, borrowing and giving away items. UI mockup.">
+<link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body class="role-student">
+
+<!-- ================= ICON SPRITE ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 20s-7.5-4.6-9.2-9.3C1.7 7.4 4 4.5 7.1 4.5c2 0 3.6 1.1 4.9 2.9 1.3-1.8 2.9-2.9 4.9-2.9 3.1 0 5.4 2.9 4.3 6.2C19.5 15.4 12 20 12 20z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 5.5h16v10.5H9l-5 4v-4.5z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 004 0"/></g></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-verified" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6z"/><path d="M8.8 12l2.2 2.2 4.3-4.4"/></g></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4.5h12l-2.5 4 2.5 4H5"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0113 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></g></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1.5 1.5 0 001.5 1.5h13A1.5 1.5 0 0020 19v-3"/></g></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3.5 12.5V4h8.5l8.5 8.5-8.5 8.5z"/><circle cx="8" cy="8.5" r="1.4"/></g></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3.5-3.5M20 16H6l3.5 3.5"/></g></symbol>
+    <symbol id="i-borrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 11-2.4-5.7"/><path d="M20 4v5h-5"/><path d="M12 8v4l2.5 1.5"/></g></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18M12 9v11M12 9c-1.5-3.5-5.5-4-5.5-1.5S12 9 12 9zM12 9c1.5-3.5 5.5-4 5.5-1.5S12 9 12 9z"/></g></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2 11h11l2-8H7"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></g></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></g></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9 6v12M15 6v12"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M8 5.5v13l10-6.5z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13"/></g></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8.5" r="3.3"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><path d="M15.5 5.5a3.2 3.2 0 010 6.2M17.5 14.8c1.8.6 3.1 2.2 3.5 4.7"/></g></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C4 11 9 4.5 20 4c.5 10.5-6 15.5-15 15z"/><path d="M5 19c3-5 6.5-8 10-10"/></g></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></g></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.5l2.6 5.5 6 .7-4.4 4.1 1.2 5.9L12 16.8l-5.4 2.9 1.2-5.9L3.4 9.7l6-.7z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M7.5 15l3.5-4 3 2.5 5-6"/></g></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M3.5 11.5L20.5 4l-6.5 17-3-6.5z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V20h4.5v-5.5h3V20H18V9.5"/></g></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></g></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></g></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+    <!-- item illustrations (linework style) -->
+    <symbol id="ill-book" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10h30a6 6 0 016 6v38H18a6 6 0 01-6-6z"/><path d="M12 48a6 6 0 016-6h30"/><path d="M22 20h16M22 27h12"/><circle cx="52" cy="10" r="2.5" fill="currentColor"/></g></symbol>
+    <symbol id="ill-bike" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="42" r="10"/><circle cx="49" cy="42" r="10"/><path d="M15 42l10-18h16l8 18M25 24l8 18h-18M33 42l8-18M38 17h7l-4 7M22 18h7"/></g></symbol>
+    <symbol id="ill-calc" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="6" width="32" height="52" rx="4"/><rect x="21" y="11" width="22" height="12" rx="1.5"/><path d="M22 31h2M31 31h2M40 31h2M22 39h2M31 39h2M40 39h2M22 47h2M31 47h2M40 47h2"/></g></symbol>
+    <symbol id="ill-fridge" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="17" y="8" width="30" height="48" rx="4"/><path d="M17 26h30M23 15v6M23 32v10M22 56v3M42 56v3"/></g></symbol>
+    <symbol id="ill-tent" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 50L32 12l26 38zM32 12v38M24 50l8-14 8 14M4 50h56"/><circle cx="50" cy="16" r="3" /></g></symbol>
+    <symbol id="ill-chair" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8h24v22H20zM16 34h32l-2 6H18zM32 40v10M20 56l12-6 12 6M20 56h0M44 56h0"/><circle cx="20" cy="57" r="2"/><circle cx="44" cy="57" r="2"/><circle cx="32" cy="58" r="2"/></g></symbol>
+    <symbol id="ill-jacket" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8l8 6 8-6 12 6 6 22-8 2-2-10v30H18V28l-2 10-8-2 6-22z"/><path d="M32 14v44M26 30h3M35 30h3"/></g></symbol>
+    <symbol id="ill-monitor" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="32" rx="3"/><path d="M26 42l-2 10h16l-2-10M20 52h24M14 18l8 8M14 26l4 4"/></g></symbol>
+    <symbol id="ill-ski" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 56L40 10c1.5-2.5 4.5-2.5 5 0"/><path d="M22 58L50 12c1.5-2.5 4.5-2.5 5 0"/><path d="M14 12l34 40M26 8l30 36"/><circle cx="43" cy="46" r="3.5"/><circle cx="51.5" cy="38.5" r="3.5"/></g></symbol>
+    <symbol id="ill-flask" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="22" r="7"/><circle cx="44" cy="22" r="7"/><circle cx="32" cy="44" r="9"/><path d="M26 26l3 10M38 26l-3 10M27 22h10"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- ================= UTILITY BAR ================= -->
+<div class="utility">
+  <div class="wrap">
+    <div class="univ">Colorado State University <span>/</span> Student Marketplace</div>
+    <div class="utility-right">
+      <label class="role-switch"><span>Viewing as</span>
+        <select id="roleSelect" aria-label="Switch demo user type">
+          <option value="student">Student (buyer / seller / borrower)</option>
+          <option value="host">Event host</option>
+          <option value="moderator">Moderator</option>
+          <option value="admin">Site administrator</option>
+        </select>
+      </label>
+      <button class="story-toggle" id="storyToggle" aria-pressed="false"><span class="switch"></span> Show user stories</button>
+      <a href="#/stories" style="color:#fff">Feature map</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#/home" aria-label="RamsLoop home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="#1E4D2B"/>
+        <path d="M11 20a9 9 0 0115.4-6.4" fill="none" stroke="#CFFC00" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M29 20a9 9 0 01-15.4 6.4" fill="none" stroke="#82C503" stroke-width="3.2" stroke-linecap="round"/>
+        <circle cx="26.4" cy="13.6" r="2.6" fill="#CFFC00"/>
+        <circle cx="13.6" cy="26.4" r="2.6" fill="#82C503"/>
+      </svg>
+      <span class="brand-word">Rams<span class="serif-i">Loop</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#/browse" data-nav="browse">Browse</a>
+      <a href="#/sell" data-nav="sell">Sell or share</a>
+      <a href="#/board" data-nav="board">Community</a>
+      <a href="#/events" data-nav="events">Events</a>
+      <a href="#/moderation" data-nav="moderation" class="role-only" data-role="moderator">Moderation</a>
+      <a href="#/admin" data-nav="admin" class="role-only" data-role="admin">Admin</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn" href="#/my/alerts" title="Item alerts" aria-label="Item alerts"><svg><use href="#i-bell"/></svg><span class="badge-dot">2</span></a>
+      <a class="icon-btn" href="#/my/saved" title="Saved listings" aria-label="Saved listings"><svg><use href="#i-heart"/></svg></a>
+      <a class="icon-btn hdr-msg" href="#/messages" title="Messages" aria-label="Messages"><svg><use href="#i-chat"/></svg><span class="badge-dot">3</span></a>
+      <a href="#/my/listings" class="avatar" title="My Loop" style="text-decoration:none; margin-left:6px">RB</a>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+<!-- =====================================================
+     HOME
+     ===================================================== -->
+<section class="page" data-page="home">
+  <div class="home-hero">
+    <div class="brush"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow light">By Rams, for Rams</p>
+        <h1 class="hl-headline">
+          <span class="line">Find Your</span>
+          <span class="line"><span class="hl eg"><span class="serif-i">Pass-It-On</span></span></span>
+          <span class="line">Energy</span>
+        </h1>
+        <p class="subhead">Buy it, sell it, swap it, borrow it, or give it away — right here with other verified Rams.</p>
+        <form class="hero-search us-wrap" onsubmit="event.preventDefault(); location.hash='#/browse';">
+          <label class="sr-only" for="heroQ">Search RamsLoop</label>
+          <input id="heroQ" placeholder="Try “mini fridge”, “STAT 301”, or “bike”">
+          <button class="btn btn-primary" type="submit"><svg class="arrow"><use href="#i-search"/></svg> Search</button>
+        </form>
+        <div class="hero-quick"><span style="opacity:.8">Popular:</span>
+          <a href="#/browse">Textbooks</a><a href="#/browse">Furniture</a><a href="#/browse">Bikes</a><a href="#/browse">Free stuff</a>
+          <span class="us">US 5</span>
+        </div>
+      </div>
+      <div class="collage" aria-hidden="true">
+        <div class="c-photo c1"><img src="assets/img/campus-plaza.jpg" alt=""></div>
+        <div class="c-photo c2"><img src="assets/img/pendant-lamps.jpg" alt=""></div>
+        <div class="c-photo c3"><img src="assets/img/tree-rings.jpg" alt=""></div>
+        <div class="c-block"><span class="block-type">Reuse</span><span class="block-type red">Reconnect</span></div>
+        <div class="c-card"><span class="xtag free">Free</span><strong style="margin-top:8px">Mini fridge, 3.1 cu ft</strong><span class="muted">Pickup at Durward Hall · 2h ago</span></div>
+        <div class="linework c-line"></div>
+        <div class="c-coords">40°34′N · 105°05′W · FORT COLLINS, CO</div>
+      </div>
+    </div>
+  </div>
+  <div class="bar-strip"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <!-- five ways -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Five ways to loop</p>
+          <h2>Not just buy and sell.</h2>
+          <p class="subhead">Every listing says exactly how it changes hands, so nobody has to guess. <span class="us">US 11</span></p>
+        </div>
+        <a class="btn btn-ghost" href="#/sell">List an item <svg class="arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="ways us-wrap">
+        <a class="way sell" href="#/browse"><span class="way-ico"><svg><use href="#i-tag"/></svg></span><h3>Sell</h3><p>Set a fair student price and get it out of your room.</p><span class="count">412 listings</span></a>
+        <a class="way swap" href="#/browse"><span class="way-ico"><svg><use href="#i-swap"/></svg></span><h3>Swap</h3><p>Trade what you’ve got for what you need. No cash required.</p><span class="count">96 listings</span></a>
+        <a class="way borrow" href="#/browse"><span class="way-ico"><svg><use href="#i-borrow"/></svg></span><h3>Borrow</h3><p>Need it for a weekend or a semester? Borrow with clear return dates.</p><span class="count">71 listings</span></a>
+        <a class="way free" href="#/browse"><span class="way-ico"><svg><use href="#i-gift"/></svg></span><h3>Free</h3><p>Give it a second life instead of a trip to the dumpster.</p><span class="count">138 listings</span></a>
+        <a class="way buy" href="#/board"><span class="way-ico"><svg><use href="#i-cart"/></svg></span><h3>Buying</h3><p>Post what you’re looking for and let sellers come to you.</p><span class="count">54 requests</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- fresh listings -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Fresh on the Loop</p>
+          <h2>Just listed near campus</h2>
+        </div>
+        <a class="btn btn-quiet" href="#/browse">See all listings <svg class="arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="grid-listings" id="homeGrid"></div>
+    </div>
+  </section>
+
+  <!-- how it works -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 style="max-width:18ch">From your room to <span class="serif-i" style="font-weight:400">another Ram’s</span> in four steps.</h2>
+      <div class="steps" style="margin-top:44px">
+        <div class="linework step-line"></div>
+        <div class="step"><div class="num">1</div><h3>Verify <span class="us">US 1</span></h3><p>Sign in with your @colostate.edu email. Only CSU students get in.</p></div>
+        <div class="step"><div class="num">2</div><h3>List or find <span class="us">US 5, 9</span></h3><p>Post in under a minute, or filter by price, condition, and how it changes hands.</p></div>
+        <div class="step"><div class="num">3</div><h3>Message <span class="us">US 13</span></h3><p>Chat inside RamsLoop. Your phone number and personal email stay private.</p></div>
+        <div class="step"><div class="num">4</div><h3>Meet and rate <span class="us">US 2</span></h3><p>Meet at a campus exchange spot, then leave a rating so the next Ram knows who to trust.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- trust -->
+  <section class="section on-dark trust">
+    <div class="brush"></div>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Trusted by design</p>
+        <h2>Rams only. <span class="serif-i" style="font-weight:400">No strangers.</span></h2>
+        <p class="subhead">RamsLoop was built to avoid what makes big marketplaces feel sketchy.</p>
+        <div class="trust-list" style="margin-top:32px">
+          <div class="trust-item"><svg><use href="#i-verified"/></svg><h4>CSU-verified accounts <span class="us">US 1</span></h4><p>Every account is tied to a university email.</p></div>
+          <div class="trust-item"><svg><use href="#i-star"/></svg><h4>Ratings &amp; reviews <span class="us">US 2</span></h4><p>See how past exchanges went before you meet up.</p></div>
+          <div class="trust-item"><svg><use href="#i-flag"/></svg><h4>One-tap reporting <span class="us">US 3</span></h4><p>Flag a sketchy listing or user in seconds.</p></div>
+          <div class="trust-item"><svg><use href="#i-users"/></svg><h4>Student moderators <span class="us">US 4</span></h4><p>Reports are reviewed, and bad listings come down fast.</p></div>
+        </div>
+      </div>
+      <div class="duo-frame">
+        <img src="assets/img/campus-aerial-duo.jpg" alt="Aerial view of the CSU campus in green duotone">
+        <div class="over"><span class="block-type">Safe</span><span class="block-type">Exchange</span><span class="block-type red">Zones</span>
+          <p style="margin:10px 0 0; max-width:36ch; font-size:15px">Suggested meetup spots at the Lory Student Center, Morgan Library, and the CSU PD lobby.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- impact -->
+  <section class="section">
+    <div class="wrap impact">
+      <div>
+        <p class="eyebrow">Loop impact · this academic year</p>
+        <h2>Keep it <span class="serif-i" style="font-weight:400">in circulation.</span></h2>
+        <p class="lead" style="margin-top:14px">Every exchange saves a student money and keeps something useful out of the landfill. That supports CSU’s sustainability goals.</p>
+        <div class="color-bars h" style="max-width:260px; margin-top:24px"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="n">$10<span class="serif-i">k</span></div><div class="l">Estimated student savings (500 users × $20 avg.)</div></div>
+        <div class="stat"><div class="n">1,284</div><div class="l">Items exchanged instead of thrown out</div></div>
+        <div class="stat"><div class="n">6.2<span class="serif-i">t</span></div><div class="l">Estimated waste diverted from landfill</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- events + board teaser -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Happening on campus</p><h2>Swap meets, free stores &amp; more</h2></div>
+        <a class="btn btn-quiet" href="#/events">All events <svg class="arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="events-grid" id="homeEvents"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Community board</p><h2>What Rams are talking about</h2></div>
+        <a class="btn btn-quiet" href="#/board">Open the board <svg class="arrow"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div id="homeThreads"></div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================
+     BROWSE / SEARCH
+     ===================================================== -->
+<section class="page" data-page="browse">
+  <div class="page-hero tan">
+    <div class="wrap">
+      <p class="eyebrow">Browse the Loop</p>
+      <h1>Find your next thing.</h1>
+      <p class="subhead">Filter by item type, price, condition, and exchange method. Every seller is a verified Ram.</p>
+    </div>
+  </div>
+  <div class="wrap browse-layout">
+    <aside class="filters us-wrap" id="filterSheet" aria-label="Filters">
+      <div class="sheet-handle sheet-only" aria-hidden="true"></div>
+      <div class="sheet-head sheet-only"><h2 class="sheet-title" id="filterTitle">Filters</h2><button class="icon-btn" type="button" data-sheet-close aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
+      <span class="us">US 5 · Search &amp; filter</span>
+      <div class="filter-group">
+        <h4>Exchange method</h4>
+        <label class="opt"><input type="checkbox" name="x" value="sell"><span class="xtag sell">Sell</span><span class="ct" data-ct="sell"></span></label>
+        <label class="opt"><input type="checkbox" name="x" value="swap"><span class="xtag swap">Swap</span><span class="ct" data-ct="swap"></span></label>
+        <label class="opt"><input type="checkbox" name="x" value="borrow"><span class="xtag borrow">Borrow</span><span class="ct" data-ct="borrow"></span></label>
+        <label class="opt"><input type="checkbox" name="x" value="free"><span class="xtag free">Free</span><span class="ct" data-ct="free"></span></label>
+        <label class="opt"><input type="checkbox" name="x" value="buy"><span class="xtag buy">Buying</span><span class="ct" data-ct="buy"></span></label>
+      </div>
+      <div class="filter-group">
+        <h4>Item type</h4>
+        <div id="catFilters"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Price</h4>
+        <div class="range-row"><input class="input" id="pMin" placeholder="$ Min" inputmode="numeric"><span>–</span><input class="input" id="pMax" placeholder="$ Max" inputmode="numeric"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Condition</h4>
+        <label class="opt"><input type="checkbox" name="c" value="New">New</label>
+        <label class="opt"><input type="checkbox" name="c" value="Like new">Like new</label>
+        <label class="opt"><input type="checkbox" name="c" value="Good">Good</label>
+        <label class="opt"><input type="checkbox" name="c" value="Fair">Fair</label>
+      </div>
+      <div class="filter-group">
+        <h4>Pickup near</h4>
+        <select class="input"><option>Anywhere in Fort Collins</option><option>Main campus</option><option>South campus</option><option>Foothills campus</option></select>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-quiet btn-sm" id="clearFilters" type="button">Clear all filters</button>
+        <button class="btn btn-primary sheet-only" type="button" data-sheet-close id="showResults">Show results</button>
+      </div>
+    </aside>
+
+    <div>
+      <div class="results-bar">
+        <form class="search-inline" onsubmit="event.preventDefault()">
+          <label class="sr-only" for="browseQ">Search</label>
+          <input class="input" id="browseQ" placeholder="Search listings">
+        </form>
+        <div class="results-tools">
+          <button class="btn btn-quiet filter-btn" type="button" id="filterBtn" aria-controls="filterSheet" aria-expanded="false"><svg class="arrow"><use href="#i-filter"/></svg> Filters <span class="f-count" id="filterCount" hidden></span></button>
+          <span class="small muted" id="resultCount"></span>
+          <select class="input" style="width:auto"><option>Newest first</option><option>Price: low to high</option><option>Price: high to low</option><option>Closest</option></select>
+        </div>
+      </div>
+      <div class="active-filters" id="activeFilters"></div>
+      <div class="grid-listings three" id="browseGrid"></div>
+      <div class="alert-cta us-wrap">
+        <svg><use href="#i-bell"/></svg>
+        <div style="flex:1"><strong>Can’t find it yet?</strong> <span class="us">US 7</span><br><span class="small muted">Save this search as an alert and we’ll let you know when a match gets listed.</span></div>
+        <button class="btn btn-primary btn-sm" data-open="alertModal">Create alert</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     LISTING DETAIL
+     ===================================================== -->
+<section class="page" data-page="item">
+  <div class="wrap">
+    <div class="crumbs" id="crumbs"></div>
+    <div class="detail" id="detail"></div>
+  </div>
+  <section class="section alt tight">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">You might also like</p><h3 style="font-size:30px">More from around campus</h3></div></div>
+      <div class="grid-listings" id="relatedGrid"></div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================
+     SELL / CREATE LISTING
+     ===================================================== -->
+<section class="page" data-page="sell">
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">New listing</p>
+      <h1>Give it <span class="serif-i" style="font-weight:400">another loop.</span></h1>
+      <p class="subhead">Add a few photos and details. Your listing goes live to verified Rams right away.</p>
+    </div>
+  </div>
+  <div class="wrap sell-layout">
+    <form class="us-wrap" onsubmit="event.preventDefault(); toast('Listing published! It’s live on the Loop.'); location.hash='#/my/listings';">
+      <span class="us">US 9 · Create &amp; publish listing</span>
+      <div class="panel">
+        <h3>Photos</h3><p class="panel-sub">Up to 8 photos. The first photo is the cover.</p>
+        <div class="dropzone"><svg><use href="#i-upload"/></svg><strong>Drag photos here</strong> or <a href="#" onclick="return false">browse files</a><div class="small muted">JPG or PNG, up to 10 MB each</div></div>
+        <div class="photo-row">
+          <div class="ph"><img src="assets/img/pendant-lamps.jpg" alt=""><span class="cover-tag">COVER</span></div>
+          <div class="ph"><img src="assets/img/glass-bowl.jpg" alt=""></div>
+          <div class="ph">+ Add</div><div class="ph">+ Add</div><div class="ph">+ Add</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Item details</h3><p class="panel-sub">Be specific. Good details mean fewer questions.</p>
+        <div class="form-grid">
+          <div class="field full"><label for="sName">Item name</label><input class="input" id="sName" value="Pendant lamps (set of 2)"></div>
+          <div class="field"><label for="sCat">Category</label><select class="input" id="sCat"><option>Home &amp; Kitchen</option><option>Textbooks &amp; Supplies</option><option>Furniture</option><option>Electronics</option><option>Bikes &amp; Outdoor</option><option>Clothing</option><option>Appliances</option></select></div>
+          <div class="field"><label for="sCond">Condition</label><select class="input" id="sCond"><option>New</option><option selected>Like new</option><option>Good</option><option>Fair</option></select></div>
+          <div class="field full"><label for="sDesc">Description</label><textarea class="input" id="sDesc">Two matching globe pendant lamps with warm LED bulbs. Plug-in cords, so no hardwiring. They work great in a dorm or an apartment. Moving out in December, so I need them gone!</textarea><span class="hint">Mention size, brand, any wear, and why you’re letting it go.</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>How can it change hands? <span class="us">US 11</span></h3><p class="panel-sub">Pick one or more. Buyers will see these as tags on your listing.</p>
+        <div class="check-row" id="xChecks">
+          <label class="check-chip sell"><input type="checkbox" value="sell" checked><span>Sell</span></label>
+          <label class="check-chip swap"><input type="checkbox" value="swap" checked><span>Swap</span></label>
+          <label class="check-chip borrow"><input type="checkbox" value="borrow" id="borrowChk"><span>Borrow</span></label>
+          <label class="check-chip free"><input type="checkbox" value="free"><span>Free</span></label>
+          <label class="check-chip buy"><input type="checkbox" value="buy"><span>I’m buying (request)</span></label>
+        </div>
+        <div class="form-grid" style="margin-top:20px">
+          <div class="field"><label for="sPrice">Price</label><input class="input" id="sPrice" value="$25"></div>
+          <div class="field"><label for="sSwap">Would swap for…</label><input class="input" id="sSwap" value="Desk lamp, plants, or a rug"></div>
+        </div>
+        <div class="borrow-terms" id="borrowFields" style="margin-top:20px; display:none">
+          <strong>Borrowing terms</strong> <span class="us">US 12</span>
+          <div class="form-grid" style="margin-top:12px">
+            <div class="field"><label>Loan length</label><select class="input"><option>Weekend (Fri–Mon)</option><option>1 week</option><option>2 weeks</option><option>Full semester</option></select></div>
+            <div class="field"><label>Return by</label><input class="input" type="date" value="2026-10-19"></div>
+            <div class="field"><label>Refundable deposit</label><input class="input" value="$10"></div>
+            <div class="field"><label>Late policy</label><select class="input"><option>Reminder, then deposit kept after 3 days</option><option>Reminder only</option></select></div>
+            <div class="field full"><label>Care instructions</label><input class="input" placeholder="e.g. Return charged, please don't leave in a hot car"></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Pickup &amp; availability</h3>
+        <div class="form-grid" style="margin-top:14px">
+          <div class="field"><label>Meetup spot</label><select class="input"><option>Lory Student Center, main entrance</option><option>Morgan Library, north doors</option><option>CSU PD lobby (safe exchange zone)</option><option>Other / arrange in chat</option></select></div>
+          <div class="field"><label>Available until</label><input class="input" type="date" value="2026-12-18"></div>
+        </div>
+      </div>
+      <div class="sell-actions">
+        <button type="button" class="btn btn-quiet" onclick="toast('Draft saved')">Save draft</button>
+        <button type="submit" class="btn btn-primary">Publish listing <svg class="arrow"><use href="#i-arrow"/></svg></button>
+      </div>
+    </form>
+    <aside>
+      <div class="sell-preview">
+        <p class="eyebrow">Live preview</p>
+        <div id="sellPreview" style="max-width:320px"></div>
+        <div class="side-card" style="margin-top:22px">
+          <h4>Listing tips</h4>
+          <ul>
+            <li>Shoot in daylight, and include one photo that shows the item’s size.</li>
+            <li>Textbooks: add the course number (e.g. STAT 301).</li>
+            <li>Prohibited: weapons, alcohol, drugs, and anything from the CSU surplus program.</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- =====================================================
+     MY LOOP  (listings / saved / alerts)
+     ===================================================== -->
+<section class="page" data-page="my">
+  <div class="page-hero tan">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:end; gap:20px; flex-wrap:wrap">
+      <div>
+        <p class="eyebrow">My Loop</p>
+        <h1>Hey, Riley.</h1>
+        <p class="subhead">Manage your listings, saved items, and alerts.</p>
+      </div>
+      <a class="btn btn-primary" href="#/sell"><svg class="arrow"><use href="#i-plus"/></svg> New listing</a>
+    </div>
+  </div>
+  <div class="wrap my-layout">
+    <div class="tabs" role="tablist">
+      <button class="tab" data-tab="listings">My listings <span class="ct">5</span></button>
+      <button class="tab" data-tab="saved">Saved <span class="ct" id="savedCt">4</span></button>
+      <button class="tab" data-tab="alerts">Item alerts <span class="ct">3</span></button>
+      <button class="tab" data-tab="borrowing">Borrowing <span class="ct">1</span></button>
+    </div>
+
+    <div class="tabpane us-wrap" data-pane="listings">
+      <span class="us">US 10 · Edit, pause, or remove a listing</span>
+      <table class="table stack-sm" style="margin-top:8px">
+        <thead><tr><th>Item</th><th>Method</th><th>Status</th><th>Views</th><th>Messages</th><th style="text-align:right">Actions</th></tr></thead>
+        <tbody id="myListings"></tbody>
+      </table>
+    </div>
+
+    <div class="tabpane us-wrap" data-pane="saved">
+      <span class="us">US 8 · Favorites list</span>
+      <div class="grid-listings" id="savedGrid" style="margin-top:8px"></div>
+    </div>
+
+    <div class="tabpane" data-pane="alerts">
+      <div class="alerts-layout us-wrap">
+        <div>
+          <span class="us">US 7 · Item alerts</span>
+          <div class="alert-item"><span class="ico"><svg><use href="#i-bell"/></svg></span>
+            <div><strong>“desk chair”</strong><div class="crit"><span class="pill">Furniture</span><span class="pill">Up to $40</span><span class="pill">Good or better</span><span class="pill">Sell · Free</span></div><div class="small muted" style="margin-top:6px">2 new matches today · Email + in-app</div></div>
+            <div class="alert-actions"><button class="toggle" aria-label="Alert on" onclick="this.classList.toggle('off')"></button><button class="btn btn-quiet btn-sm" data-open="alertModal"><svg class="arrow"><use href="#i-edit"/></svg>Edit</button><button class="btn btn-danger btn-sm" data-remove-alert aria-label="Remove alert"><svg class="arrow"><use href="#i-trash"/></svg></button></div></div>
+          <div class="alert-item"><span class="ico"><svg><use href="#i-bell"/></svg></span>
+            <div><strong>“CS 165 textbook”</strong><div class="crit"><span class="pill">Textbooks &amp; Supplies</span><span class="pill">Any price</span><span class="pill">Any condition</span></div><div class="small muted" style="margin-top:6px">No matches yet · In-app only</div></div>
+            <div class="alert-actions"><button class="toggle" aria-label="Alert on" onclick="this.classList.toggle('off')"></button><button class="btn btn-quiet btn-sm" data-open="alertModal"><svg class="arrow"><use href="#i-edit"/></svg>Edit</button><button class="btn btn-danger btn-sm" data-remove-alert aria-label="Remove alert"><svg class="arrow"><use href="#i-trash"/></svg></button></div></div>
+          <div class="alert-item"><span class="ico"><svg><use href="#i-bell"/></svg></span>
+            <div><strong>Bikes under $150</strong><div class="crit"><span class="pill">Bikes &amp; Outdoor</span><span class="pill">$0–$150</span><span class="pill">Sell · Swap · Borrow</span></div><div class="small muted" style="margin-top:6px">Paused</div></div>
+            <div class="alert-actions"><button class="toggle off" aria-label="Alert off" onclick="this.classList.toggle('off')"></button><button class="btn btn-quiet btn-sm" data-open="alertModal"><svg class="arrow"><use href="#i-edit"/></svg>Edit</button><button class="btn btn-danger btn-sm" data-remove-alert aria-label="Remove alert"><svg class="arrow"><use href="#i-trash"/></svg></button></div></div>
+        </div>
+        <div class="panel">
+          <h3>New alert</h3><p class="panel-sub">We’ll notify you when a matching item is listed.</p>
+          <div style="display:grid; gap:14px">
+            <div class="field"><label>Keywords</label><input class="input" placeholder="e.g. mini fridge, TI-84"></div>
+            <div class="field"><label>Category</label><select class="input"><option>Any category</option><option>Textbooks &amp; Supplies</option><option>Furniture</option><option>Electronics</option><option>Bikes &amp; Outdoor</option></select></div>
+            <div class="range-row"><input class="input" placeholder="$ Min"><span>–</span><input class="input" placeholder="$ Max"></div>
+            <div class="field"><label>Minimum condition</label><select class="input"><option>Any</option><option>Fair</option><option>Good</option><option>Like new</option><option>New</option></select></div>
+            <div class="field"><label>Notify me by</label><div class="check-row"><label class="check-chip"><input type="checkbox" checked><span>In-app</span></label><label class="check-chip"><input type="checkbox" checked><span>CSU email</span></label></div></div>
+            <button class="btn btn-primary" onclick="toast('Alert created')">Create alert</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpane" data-pane="borrowing">
+      <div class="panel us-wrap" style="max-width:760px">
+        <span class="us">US 12 · Borrowing terms &amp; return dates</span>
+        <div style="display:flex; gap:16px; align-items:center">
+          <div class="mini" style="width:80px; height:80px; border-radius:8px; overflow:hidden" id="borrowMini"></div>
+          <div style="flex:1"><span class="xtag borrow">Borrow</span><h3 style="margin-top:6px">TI-84 Plus graphing calculator</h3><div class="small muted">Lent by Priya R. · Deposit $20 held</div></div>
+          <button class="btn btn-quiet btn-sm" onclick="location.hash='#/messages'">Message</button>
+        </div>
+        <div class="timeline">
+          <div class="tl"><strong>Picked up</strong>Aug 28</div>
+          <div class="tl"><strong>Reminder</strong>Dec 8 (auto)</div>
+          <div class="tl"><strong>Return by</strong>Dec 12, Morgan Library</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MESSAGES
+     ===================================================== -->
+<section class="page" data-page="messages">
+  <div class="wrap">
+    <div class="inbox us-wrap">
+      <div class="convos">
+        <div class="c-search"><input class="input" placeholder="Search messages"></div>
+        <a class="convo on unread" href="#/messages/1" data-convo="1"><span class="avatar b">MP</span><div><div class="top"><strong>Maya P.</strong><span>2m</span></div><div class="re">Re: Intro to Statistics textbook</div><div class="snip">Does Thursday after 2 work? I can do LSC</div></div></a>
+        <a class="convo unread" href="#/messages/2" data-convo="2"><span class="avatar c">JK</span><div><div class="top"><strong>Jordan K.</strong><span>1h</span></div><div class="re">Re: Pendant lamps (set of 2)</div><div class="snip">Would you swap for a plant + $10?</div></div></a>
+        <a class="convo unread" href="#/messages/3" data-convo="3"><span class="avatar e">PR</span><div><div class="top"><strong>Priya R.</strong><span>3h</span></div><div class="re">Re: TI-84 Plus (borrow)</div><div class="snip">Reminder: return date is Dec 12 🙂</div></div></a>
+        <a class="convo" href="#/messages/4" data-convo="4"><span class="avatar d">DM</span><div><div class="top"><strong>Diego M.</strong><span>Tue</span></div><div class="re">Re: Mini fridge</div><div class="snip">Thanks again! Left you a review.</div></div></a>
+        <a class="convo" href="#/messages/5" data-convo="5"><span class="avatar f">ST</span><div><div class="top"><strong>Sam T.</strong><span>Sep 22</span></div><div class="re">Re: Camping tent</div><div class="snip">You: Returned it at the PD lobby</div></div></a>
+      </div>
+      <div class="thread-pane">
+        <div class="tp-head">
+          <a class="icon-btn tp-back" href="#/messages" data-back-to="messages" aria-label="Back to messages"><svg><use href="#i-back"/></svg></a>
+          <span class="avatar b">MP</span>
+          <div style="flex:1"><strong>Maya P.</strong> <span class="verified"><svg><use href="#i-verified"/></svg> Verified Ram</span><div class="small muted"><span class="stars">★★★★★</span> 4.9 · 23 exchanges</div></div>
+          <a class="btn btn-quiet btn-sm" href="#/profile">View profile</a>
+          <button class="icon-btn" data-open="reportModal" title="Report user" aria-label="Report user"><svg><use href="#i-flag"/></svg></button>
+        </div>
+        <div class="tp-listing"><div class="mini" id="msgMini"></div><div style="flex:1"><strong>Intro to Statistics (8th ed.)</strong> · $35 · <span class="xtag sell">Sell</span> <span class="xtag swap">Swap</span></div><a href="#/item/1">View listing</a></div>
+        <div class="msgs">
+          <span class="sys"><svg><use href="#i-lock"/></svg> Messages stay in RamsLoop. Your phone number and personal email are never shared. <span class="us">US 13</span></span>
+          <div class="msg me">Hi! Is the stats book still available? I’m in STAT 301 this semester.<span class="t">10:14 AM</span></div>
+          <div class="msg them">Yes, still have it! Barely any highlighting. It comes with the access code card too (unused).<span class="t">10:21 AM</span></div>
+          <div class="msg me">Amazing. Would you take $30?<span class="t">10:22 AM</span></div>
+          <div class="offer-card"><div class="label">Offer</div><strong style="font-size:20px">$30.00</strong> <span class="small muted">· from you</span><div style="display:flex; gap:8px; margin-top:10px"><span class="pill ev">Accepted by Maya</span></div></div>
+          <div class="msg them">Deal 👍 Does Thursday after 2 work? I can do LSC<span class="t">10:30 AM</span></div>
+          <span class="sys"><svg><use href="#i-pin"/></svg> Suggested safe spot: Lory Student Center, main entrance</span>
+        </div>
+        <div>
+          <div class="quick-replies"><button>Thursday works!</button><button>Can we do Morgan Library?</button><button>Mark as exchanged</button></div>
+          <div class="composer"><input class="input" placeholder="Write a message…"><button class="btn btn-primary"><svg class="arrow"><use href="#i-send"/></svg> Send</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     COMMUNITY BOARD
+     ===================================================== -->
+<section class="page" data-page="board">
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Community board</p>
+      <h1>Ask, offer, <span class="serif-i" style="font-weight:400">connect.</span></h1>
+      <p class="subhead">Request items you can’t find, swap move-out tips, and talk about upcoming exchange events.</p>
+    </div>
+  </div>
+  <div class="wrap board-layout">
+    <div class="us-wrap">
+      <span class="us">US 14 · General discussion board</span>
+      <div class="panel composer-card">
+        <span class="avatar">RB</span>
+        <div style="display:grid; gap:10px">
+          <input class="input" placeholder="Start a post: ask for an item, share a tip, or plan a meetup…">
+          <div style="display:flex; gap:8px; justify-content:space-between; flex-wrap:wrap">
+            <div class="cat-filter" style="margin:0"><button class="on">Request (ISO)</button><button>Events</button><button>Tips</button><button>Move-out</button></div>
+            <button class="btn btn-primary btn-sm" onclick="toast('Posted to the board')">Post</button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-filter" id="boardFilter"><button class="on" data-c="all">All</button><button data-c="iso">Requests</button><button data-c="ev">Events</button><button data-c="tip">Tips</button><button data-c="move">Move-out</button></div>
+      <div id="boardThreads"></div>
+    </div>
+    <aside>
+      <div class="side-card">
+        <h4>Board guidelines</h4>
+        <ul><li>Be kind. Everyone here is a Ram.</li><li>No selling in threads. Make a listing instead.</li><li>Report spam or harassment with the flag icon.</li></ul>
+      </div>
+      <div class="side-card" style="background:var(--csu-green); color:#fff">
+        <p class="eyebrow light" style="margin-bottom:6px">Next event</p>
+        <h4 style="color:#fff">Move-Out Swap Meet</h4>
+        <p class="small" style="color:#d7e2d9; margin:6px 0 14px">Sat, Oct 24 · LSC Plaza · 10am–2pm</p>
+        <a class="btn btn-energy btn-sm" href="#/events">RSVP</a>
+      </div>
+      <div class="side-card">
+        <h4>Trending tags</h4>
+        <div style="display:flex; gap:6px; flex-wrap:wrap"><span class="pill">#textbooks</span><span class="pill">#dormlife</span><span class="pill">#bikes</span><span class="pill">#free</span><span class="pill">#moveout</span><span class="pill">#skiseason</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- =====================================================
+     EVENTS
+     ===================================================== -->
+<section class="page" data-page="events">
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Loop events</p>
+      <h1>Swap it <span class="serif-i" style="font-weight:400">in person.</span></h1>
+      <p class="subhead">Campus swap meets, free-store pop-ups, and donation drives. Bring something, take something.</p>
+    </div>
+  </div>
+  <section class="section tight">
+    <div class="wrap">
+      <div class="feature-event us-wrap">
+        <div class="fe-img"><img src="assets/img/bonfire.jpg" alt="Students gathered on campus at night"></div>
+        <div class="fe-body">
+          <span class="us" style="align-self:flex-start">US 15 · Host exchange events</span>
+          <span class="block-type" style="align-self:flex-start">Featured</span>
+          <h2 style="font-size:40px">Move-Out Swap Meet</h2>
+          <p style="margin:0; color:#d7e2d9">Bring gently used dorm and apartment gear and leave with something new-to-you. Leftover items go to the Rams Against Hunger pantry and local donation partners.</p>
+          <div class="facts">
+            <div><svg><use href="#i-cal"/></svg> Saturday, October 24, 2026</div>
+            <div><svg><use href="#i-clock"/></svg> 10:00 am – 2:00 pm</div>
+            <div><svg><use href="#i-pin"/></svg> Lory Student Center Plaza</div>
+            <div><svg><use href="#i-users"/></svg> Hosted by ASCSU Sustainability · 184 going</div>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:8px; flex-wrap:wrap">
+            <button class="btn btn-energy" onclick="this.textContent='✓ You’re going'; toast('RSVP saved. Added to your calendar.')">RSVP</button>
+            <button class="btn btn-ghost" onclick="toast('Drop-off slot reserved: 10:30 am')">Reserve a drop-off slot</button>
+          </div>
+        </div>
+      </div>
+      <div class="section-head" style="margin-top:56px"><div><p class="eyebrow">Upcoming</p><h2>More events</h2></div>
+        <div class="cat-filter" style="margin:0"><button class="on">All</button><button>Swap</button><button>Donate</button><button>Sell</button><button>Workshops</button></div></div>
+      <div class="events-grid" id="eventsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Host tools -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="host-locked panel" style="text-align:center; padding:40px">
+        <svg style="width:36px;height:36px;color:var(--oval-green)"><use href="#i-lock"/></svg>
+        <h3 style="margin-top:10px">Host tools</h3>
+        <p class="muted" style="max-width:52ch; margin:8px auto 18px">Approved student orgs and campus departments can create events and send announcements and updates to interested students. Switch the “Viewing as” menu to <strong>Event host</strong> to preview.</p>
+        <button class="btn btn-primary" onclick="setRole('host')">Preview as event host</button>
+      </div>
+      <div class="host-tools">
+        <p class="eyebrow">Host dashboard</p>
+        <h2 style="margin-bottom:28px">Your events</h2>
+        <div class="two-col">
+          <div class="panel us-wrap">
+            <span class="us">US 15 · Create an event</span>
+            <h3>Create an event</h3><p class="panel-sub">Buy, sell, swap, or donation events on or near campus.</p>
+            <div class="form-grid">
+              <div class="field full"><label>Event name</label><input class="input" value="Winter Gear Swap &amp; Ski Tune Clinic"></div>
+              <div class="field"><label>Type</label><select class="input"><option>Swap</option><option>Sell</option><option>Donate</option><option>Free store</option><option>Workshop</option></select></div>
+              <div class="field"><label>Capacity</label><input class="input" value="150"></div>
+              <div class="field"><label>Date</label><input class="input" type="date" value="2026-11-14"></div>
+              <div class="field"><label>Time</label><input class="input" value="11:00 am – 3:00 pm"></div>
+              <div class="field full"><label>Location</label><input class="input" value="Campus Recreation Center, Outdoor Program"></div>
+              <div class="field full"><label>Accepted items</label><div class="check-row"><label class="check-chip"><input type="checkbox" checked><span>Skis &amp; boards</span></label><label class="check-chip"><input type="checkbox" checked><span>Winter clothing</span></label><label class="check-chip"><input type="checkbox"><span>Camping gear</span></label><label class="check-chip"><input type="checkbox"><span>Bikes</span></label></div></div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px"><button class="btn btn-quiet">Save draft</button><button class="btn btn-primary" onclick="toast('Event submitted for approval')">Publish event</button></div>
+          </div>
+          <div class="panel us-wrap">
+            <span class="us">US 16 · Event announcements &amp; updates</span>
+            <h3>Event announcements &amp; updates</h3><p class="panel-sub">Send announcements and updates to community members who opted in to RamsLoop event updates.</p>
+            <div class="field"><label>Audience</label>
+              <div class="seg-list">
+                <label><input type="checkbox" checked> All event subscribers<span class="n">2,418</span></label>
+                <label><input type="checkbox"> Past swap-meet attendees<span class="n">612</span></label>
+                <label><input type="checkbox"> Residence Life halls<span class="n">1,140</span></label>
+                <label><input type="checkbox"> Interested in: Outdoor &amp; ski<span class="n">388</span></label>
+              </div>
+            </div>
+            <div class="field" style="margin-top:14px"><label>Subject</label><input class="input" value="Winter Gear Swap is Nov 14. Bring your skis!"></div>
+            <div class="email-preview" style="margin-top:14px">
+              <div class="ep-head"><span class="block-type" style="font-size:10px">RamsLoop Events</span><h3 style="color:#fff; margin-top:12px">Find Your <span class="serif-i" style="font-weight:400">Fresh-Powder</span> Energy</h3></div>
+              <div class="ep-body">Swap last season’s gear for this season’s at the Rec Center on Sat, Nov 14. Free ski wax tune-ups while you shop.<div style="margin-top:14px"><span class="btn btn-primary btn-sm">RSVP on RamsLoop</span></div></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; gap:10px; flex-wrap:wrap"><span class="small muted">Sending to 2,418 · CAN-SPAM unsubscribe footer included</span>
+              <div style="display:flex; gap:10px"><button class="btn btn-quiet btn-sm" onclick="toast('Test email sent to you')">Send test</button><button class="btn btn-primary btn-sm" onclick="toast('Scheduled for Nov 7, 9:00 am')">Schedule send</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =====================================================
+     PROFILE (ratings & reviews)
+     ===================================================== -->
+<section class="page" data-page="profile">
+  <div class="page-hero">
+    <div class="wrap profile-head">
+      <span class="avatar lg b">MP</span>
+      <div>
+        <p class="eyebrow" style="margin-bottom:4px">Seller profile</p>
+        <h1 style="font-size:48px">Maya P.</h1>
+        <div class="badges" style="margin-top:12px">
+          <span class="badge"><svg><use href="#i-verified"/></svg> CSU verified</span>
+          <span class="badge"><svg><use href="#i-leaf"/></svg> 23 items looped</span>
+          <span class="badge"><svg><use href="#i-clock"/></svg> Usually replies in 1 hr</span>
+          <span class="badge"><svg><use href="#i-cal"/></svg> Member since Aug 2025</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <a class="btn btn-energy" href="#/messages"><svg class="arrow"><use href="#i-chat"/></svg> Message</a>
+        <button class="btn btn-ghost" data-open="reportModal"><svg class="arrow"><use href="#i-flag"/></svg> Report</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap profile-layout">
+    <div class="us-wrap">
+      <span class="us">US 2 · Ratings &amp; reviews</span>
+      <div class="panel">
+        <div class="rating-summary">
+          <div><div class="rating-big">4.9</div><div class="stars">★★★★★</div><div class="small muted">21 reviews</div></div>
+          <div class="bars">
+            <div class="b"><span>5★</span><div class="track"><div class="fill" style="width:90%"></div></div><span>19</span></div>
+            <div class="b"><span>4★</span><div class="track"><div class="fill" style="width:10%"></div></div><span>2</span></div>
+            <div class="b"><span>3★</span><div class="track"><div class="fill" style="width:0%"></div></div><span>0</span></div>
+            <div class="b"><span>2★</span><div class="track"><div class="fill" style="width:0%"></div></div><span>0</span></div>
+            <div class="b"><span>1★</span><div class="track"><div class="fill" style="width:0%"></div></div><span>0</span></div>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:18px"><span class="pill">Good communication (17)</span><span class="pill">On time (18)</span><span class="pill">Item as described (20)</span><span class="pill">Friendly (15)</span><span class="pill">Fair price (12)</span></div>
+      </div>
+      <div class="panel">
+        <div class="review" style="border-top:0; padding-top:0"><span class="avatar c">JK</span><div><div class="r-top"><strong>Jordan K.</strong><span class="stars">★★★★★</span><span class="small muted">Bought · Oct 2026</span></div><p>Desk was exactly as pictured and she even helped me carry it to my car. 10/10.</p></div></div>
+        <div class="review"><span class="avatar d">DM</span><div><div class="r-top"><strong>Diego M.</strong><span class="stars">★★★★★</span><span class="small muted">Swapped · Sep 2026</span></div><p>Easy swap at the LSC. Traded my old monitor for her bike rack. Would loop again.</p></div></div>
+        <div class="review"><span class="avatar e">PR</span><div><div class="r-top"><strong>Priya R.</strong><span class="stars">★★★★☆</span><span class="small muted">Borrowed · Aug 2026</span></div><p>Borrowed her tent for a Horsetooth weekend. Clear return instructions, and she was flexible when I ran a day late.</p></div></div>
+        <button class="btn btn-quiet btn-sm" style="margin-top:12px">Show all 21 reviews</button>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">Active listings</p>
+      <div class="grid-listings three profile-grid" id="profileGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     VERIFY / SIGN IN
+     ===================================================== -->
+<section class="page" data-page="verify">
+  <div class="verify">
+    <div class="v-art">
+      <img src="assets/img/mountain-lake-duo.jpg" alt="Colorado mountain lake in green duotone">
+      <div class="v-copy">
+        <span class="block-type">Rams</span> <span class="block-type red">Only</span>
+        <h1 class="hl-headline" style="color:#fff; margin-top:18px; font-size:clamp(38px,4.4vw,62px)"><span class="line">Find Your</span><span class="line"><span class="hl eg"><span class="serif-i">Trusted-Trade</span></span></span><span class="line">Energy</span></h1>
+      </div>
+    </div>
+    <div class="v-form">
+      <div class="v-inner us-wrap">
+        <span class="us">US 1 · Verify CSU affiliation</span>
+        <div class="v-steps"><i class="on" data-vs="1"></i><i data-vs="2"></i><i data-vs="3"></i></div>
+        <div class="v-step on" data-step="1">
+          <p class="eyebrow">Step 1 of 3</p>
+          <h2 style="font-size:38px">Verify you’re a Ram.</h2>
+          <p class="muted" style="margin:10px 0 24px">RamsLoop is only for CSU students. We’ll send a 6-digit code to your university email.</p>
+          <div class="field"><label for="eid">CSU email</label><div class="email-field"><input id="eid" value="rbennett"><span>@colostate.edu</span></div><span class="hint">Use your eID. Personal emails can’t be verified.</span></div>
+          <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:22px" onclick="vStep(2)">Send verification code <svg class="arrow"><use href="#i-arrow"/></svg></button>
+          <p class="small muted" style="margin-top:18px">Already verified? <a href="#/home">Sign in with CSU SSO</a></p>
+        </div>
+        <div class="v-step" data-step="2">
+          <p class="eyebrow">Step 2 of 3</p>
+          <h2 style="font-size:38px">Check your inbox.</h2>
+          <p class="muted" style="margin:10px 0 0">We sent a code to <strong>rbennett@colostate.edu</strong>. It expires in 10 minutes.</p>
+          <div class="code-inputs"><input maxlength="1" value="4"><input maxlength="1" value="8"><input maxlength="1" value="2"><input maxlength="1" value="1"><input maxlength="1" value="7"><input maxlength="1" value="3"></div>
+          <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="vStep(3)">Verify code</button>
+          <p class="small muted" style="margin-top:18px">Didn’t get it? <a href="#" onclick="toast('New code sent'); return false">Resend code</a> · <a href="#" onclick="vStep(1); return false">Change email</a></p>
+        </div>
+        <div class="v-step" data-step="3">
+          <div class="check-big"><svg><use href="#i-check"/></svg></div>
+          <p class="eyebrow">Verified</p>
+          <h2 style="font-size:38px">You’re in, Riley.</h2>
+          <p class="muted" style="margin:10px 0 22px">Your profile now shows the <span class="verified"><svg><use href="#i-verified"/></svg> CSU verified</span> badge. Set a display name and you’re ready to loop.</p>
+          <div class="field"><label>Display name</label><input class="input" value="Riley B."></div>
+          <label class="opt" style="display:flex; gap:10px; margin:16px 0; font-size:15px"><input type="checkbox" checked style="accent-color:var(--csu-green)"> Email me about campus swap events (you can unsubscribe anytime)</label>
+          <a class="btn btn-primary" style="width:100%; justify-content:center" href="#/home">Start exploring <svg class="arrow"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MODERATION
+     ===================================================== -->
+<section class="page" data-page="moderation">
+  <div class="page-hero tan">
+    <div class="wrap"><p class="eyebrow">Moderator console</p><h1>Keep the Loop <span class="serif-i" style="font-weight:400">safe.</span></h1><p class="subhead">Review reports, remove fraudulent or prohibited listings, and clean up stale posts.</p></div>
+  </div>
+  <div class="wrap mod-layout us-wrap">
+    <div>
+      <span class="us">US 4 · Review reports &amp; remove listings</span>
+      <div class="kpi-mini">
+        <div><div class="n">7</div><div class="l">Open reports</div></div>
+        <div><div class="n">3</div><div class="l">In review</div></div>
+        <div><div class="n">4.2h</div><div class="l">Median time to resolve</div></div>
+        <div><div class="n">18</div><div class="l">Inactive 90+ days</div></div>
+      </div>
+      <div class="tabs" style="margin-bottom:16px"><button class="tab on">Reports <span class="ct">10</span></button><button class="tab">Inactive listings <span class="ct">18</span></button><button class="tab">Prohibited keywords <span class="ct">2</span></button><button class="tab">Resolved</button></div>
+      <table class="table stack-sm">
+        <thead><tr><th>Reported</th><th>Reason</th><th>Reports</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <tr class="sel"><td><div class="item-cell"><div class="mini" data-ill="monitor" data-bg="#E3CDB1"></div><div><strong>“Brand new MacBook $150”</strong><div class="small muted">Listing · user k.null22</div></div></div></td><td>Suspected scam</td><td>4</td><td><span class="status open">Open</span></td><td><button class="btn btn-quiet btn-sm">Review</button></td></tr>
+          <tr><td><div class="item-cell"><span class="avatar d">TX</span><div><strong>tx_resale</strong><div class="small muted">User</div></div></div></td><td>Asked to pay off-platform</td><td>2</td><td><span class="status open">Open</span></td><td><button class="btn btn-quiet btn-sm">Review</button></td></tr>
+          <tr><td><div class="item-cell"><div class="mini" data-ill="flask" data-bg="#FFC038"></div><div><strong>“Lab chemicals, assorted”</strong><div class="small muted">Listing · user b.lee</div></div></div></td><td>Prohibited item</td><td>1</td><td><span class="status review">In review</span></td><td><button class="btn btn-quiet btn-sm">Review</button></td></tr>
+          <tr><td><div class="item-cell"><div class="mini" data-ill="bike" data-bg="#008FB3"></div><div><strong>“Road bike – cheap”</strong><div class="small muted">Listing · user anon.ram</div></div></div></td><td>Possibly stolen</td><td>3</td><td><span class="status review">In review</span></td><td><button class="btn btn-quiet btn-sm">Review</button></td></tr>
+          <tr><td><div class="item-cell"><div class="mini" data-ill="chair" data-bg="#E56A54"></div><div><strong>“Futon frame”</strong><div class="small muted">Listing · 124 days old</div></div></div></td><td>Inactive / sold?</td><td>—</td><td><span class="status open">Auto-flag</span></td><td><button class="btn btn-quiet btn-sm">Review</button></td></tr>
+          <tr><td><div class="item-cell"><span class="avatar e">RL</span><div><strong>Board post: “selling notes”</strong><div class="small muted">Thread</div></div></div></td><td>Academic integrity</td><td>2</td><td><span class="status closed">Removed</span></td><td><button class="btn btn-quiet btn-sm">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel mod-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center"><span class="status open">Open · 4 reports</span><span class="small muted">Case #RL-2291</span></div>
+      <h3 style="margin-top:10px">“Brand new MacBook $150”</h3>
+      <div class="evidence"><div class="mini" data-ill="monitor" data-bg="#E3CDB1"></div><div class="small"><strong>Seller:</strong> k.null22 <span class="muted">(joined 2 days ago, 0 exchanges)</span><br><strong>Price:</strong> $150 · <strong>Method:</strong> Sell<br><strong>Photos:</strong> 1 (reverse image match found)</div></div>
+      <div class="flag-reason"><strong>Top report reason:</strong> “Price is way too low and the seller asked me to pay with a gift card before meeting.” (reported by 4 verified users)</div>
+      <div class="field" style="margin-top:16px"><label>Moderator note</label><textarea class="input" style="min-height:80px">Reverse image matches a stock photo. Gift-card request violates payment policy.</textarea></div>
+      <div class="mod-actions">
+        <button class="btn btn-danger" onclick="toast('Listing removed and seller notified')"><svg class="arrow"><use href="#i-trash"/></svg> Remove listing</button>
+        <button class="btn btn-quiet" onclick="toast('User suspended pending review')"><svg class="arrow"><use href="#i-lock"/></svg> Suspend user</button>
+        <button class="btn btn-quiet" onclick="toast('Warning sent')"><svg class="arrow"><use href="#i-flag"/></svg> Send warning</button>
+        <button class="btn btn-quiet" onclick="toast('Report dismissed')"><svg class="arrow"><use href="#i-x"/></svg> Dismiss</button>
+      </div>
+      <div class="log"><div>10:02 · Auto-flagged: price anomaly (−82% vs. category)</div><div>10:40 · 4th user report received</div><div>11:05 · Assigned to you</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     ADMIN DASHBOARD
+     ===================================================== -->
+<section class="page" data-page="admin">
+  <div class="page-hero">
+    <div class="wrap"><p class="eyebrow">Site administration</p><h1>Loop health</h1><p class="subhead">Track adoption, exchange activity, trust and safety, and sustainability impact.</p></div>
+  </div>
+  <div class="wrap dash us-wrap">
+    <span class="us">US 17 · Performance indicators</span>
+    <div class="dash-filters">
+      <div class="seg-ctl" id="rangeCtl"><button>7 days</button><button class="on">30 days</button><button>Semester</button><button>Year</button></div>
+      <select class="input" style="width:auto"><option>All categories</option><option>Textbooks &amp; Supplies</option><option>Furniture</option></select>
+      <button class="btn btn-quiet btn-sm" style="margin-left:auto" onclick="toast('Report exported as CSV')">Export CSV</button>
+    </div>
+    <div class="kpis">
+      <div class="kpi hero"><div class="l">Verified users</div><div class="n">3,412</div><div class="d up">▲ 12.4%</div></div>
+      <div class="kpi"><div class="l">Active listings</div><div class="n">771</div><div class="d up">▲ 8.1%</div></div>
+      <div class="kpi"><div class="l">Exchanges completed</div><div class="n">1,284</div><div class="d up">▲ 21%</div></div>
+      <div class="kpi"><div class="l">Median time to first reply</div><div class="n">38m</div><div class="d up">▼ 6m faster</div></div>
+      <div class="kpi"><div class="l">Est. student savings</div><div class="n">$41.2k</div><div class="d up">▲ 18%</div></div>
+      <div class="kpi"><div class="l">Open reports</div><div class="n">7</div><div class="d down">▲ 2 vs. last period</div></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Exchanges completed per week</h4><div class="sub">Last 12 weeks · all exchange methods</div>
+        <div class="chart" id="lineChart"></div>
+        <div class="tooltip" id="lineTip"></div>
+      </div>
+      <div class="chart-card">
+        <h4>Exchange method mix</h4><div class="sub">Share of completed exchanges, 30 days</div>
+        <div class="mix-bar" id="mixBar"></div>
+        <div class="legend" id="mixLegend"></div>
+        <table class="table" style="margin-top:16px; font-size:14px" id="mixTable"></table>
+      </div>
+      <div class="chart-card">
+        <h4>Top categories by new listings</h4><div class="sub">30 days</div>
+        <div id="catBars" style="margin-top:10px"></div>
+      </div>
+      <div class="chart-card">
+        <h4>Platform health</h4><div class="sub">Live status</div>
+        <div class="health">
+          <div><span>CSU SSO / email verification</span><span class="ok">● Operational</span></div>
+          <div><span>Messaging service</span><span class="ok">● Operational</span></div>
+          <div><span>Image uploads</span><span class="warn">▲ Degraded (slow)</span></div>
+          <div><span>Alert notifications sent</span><strong>2,906</strong></div>
+          <div><span>Event update subscribers</span><strong>2,418</strong></div>
+          <div><span>Uptime (30 days)</span><strong>99.94%</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     FEATURE MAP (user stories → screens)
+     ===================================================== -->
+<section class="page" data-page="stories">
+  <div class="page-hero tan">
+    <div class="wrap"><p class="eyebrow">Project Proposal · Team 1</p><h1>Feature map</h1><p class="subhead">The 17 user stories from the proposal, organized into 6 themes and 10 epics, and where each one lives in this mockup. The six MVP stories (priorities 1–6) are marked.</p></div>
+  </div>
+  <div class="wrap stories-layout">
+    <table class="table story-table stack-sm">
+      <thead><tr><th>#</th><th>User story</th><th>Theme · Epic</th><th>Priority</th><th>Screen</th></tr></thead>
+      <tbody id="storyRows"></tbody>
+    </table>
+    <p class="small muted" style="margin-top:16px">Tip: turn on “Show user stories” in the top bar to see a yellow tag beside every feature on each screen.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="brush"></div>
+  <div class="bar-strip"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#/home"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#fff"/><path d="M11 20a9 9 0 0115.4-6.4" fill="none" stroke="#1E4D2B" stroke-width="3.2" stroke-linecap="round"/><path d="M29 20a9 9 0 01-15.4 6.4" fill="none" stroke="#006144" stroke-width="3.2" stroke-linecap="round"/><circle cx="26.4" cy="13.6" r="2.6" fill="#1E4D2B"/><circle cx="13.6" cy="26.4" r="2.6" fill="#006144"/></svg><span class="brand-word">Rams<span class="serif-i">Loop</span></span></a>
+        <p style="margin:16px 0 0; max-width:34ch; font-size:15px">A student-to-student marketplace for the Colorado State community. Save money, cut waste, meet your neighbors.</p>
+      </div>
+      <div><h5>Marketplace</h5><ul><li><a href="#/browse">Browse</a></li><li><a href="#/sell">Sell or share</a></li><li><a href="#/my/alerts">Item alerts</a></li><li><a href="#/my/saved">Saved</a></li></ul></div>
+      <div><h5>Community</h5><ul><li><a href="#/board">Community board</a></li><li><a href="#/events">Events</a></li><li><a href="#/profile">Seller profiles</a></li><li><a href="#/verify">Verify account</a></li></ul></div>
+      <div><h5>Trust &amp; safety</h5><ul><li><a href="#" data-open="reportModal">Report a problem</a></li><li><a href="#/moderation">Moderation</a></li><li><a href="#/admin">Admin dashboard</a></li><li><a href="#/stories">Feature map</a></li></ul></div>
+    </div>
+    <div class="foot-base"><span>RamsLoop · Project Proposal, Team 1 · UI mockup for coursework</span><span>Student project, not an official Colorado State University website.</span></div>
+  </div>
+</footer>
+
+<!-- ================= MODALS ================= -->
+<div class="modal-backdrop" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="repTitle">
+  <div class="modal">
+    <button class="icon-btn x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <span class="us">US 3 · Report suspicious user or listing</span>
+    <p class="eyebrow" style="color:#9b2f1d">Report</p>
+    <h3 id="repTitle">What’s wrong?</h3>
+    <p class="muted small" style="margin:6px 0 0">Reports are anonymous and reviewed by a RamsLoop moderator, usually within a few hours.</p>
+    <div class="radio-list">
+      <label><input type="radio" name="rr" checked> Looks like a scam or fraud</label>
+      <label><input type="radio" name="rr"> Asked me to pay or talk off-platform</label>
+      <label><input type="radio" name="rr"> Prohibited or unsafe item</label>
+      <label><input type="radio" name="rr"> Item may be stolen</label>
+      <label><input type="radio" name="rr"> Harassment or inappropriate messages</label>
+      <label><input type="radio" name="rr"> Listing is inactive / already gone</label>
+    </div>
+    <div class="field"><label>Anything else? (optional)</label><textarea class="input" style="min-height:80px" placeholder="Add details or screenshots to help our moderators"></textarea></div>
+    <label style="display:flex; gap:10px; align-items:center; margin:14px 0; font-size:14px"><input type="checkbox" checked style="accent-color:var(--csu-green)"> Also block this user from messaging me</label>
+    <div style="display:flex; justify-content:flex-end; gap:10px"><button class="btn btn-quiet" data-close>Cancel</button><button class="btn btn-primary" onclick="closeModals(); toast('Thanks! A moderator will review this report.')">Submit report</button></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="alertModal" role="dialog" aria-modal="true" aria-labelledby="alTitle">
+  <div class="modal">
+    <button class="icon-btn x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <span class="us">US 7 · Item alerts</span>
+    <p class="eyebrow">Item alert</p>
+    <h3 id="alTitle">Tell me when it’s listed</h3>
+    <div style="display:grid; gap:14px; margin-top:16px">
+      <div class="field"><label>Keywords</label><input class="input" id="alertKw" value="desk chair"></div>
+      <div class="field"><label>Category</label><select class="input"><option>Furniture</option><option>Any category</option></select></div>
+      <div class="range-row"><input class="input" value="$0"><span>–</span><input class="input" value="$40"></div>
+      <div class="field"><label>Condition</label><select class="input"><option>Good or better</option><option>Any</option></select></div>
+      <div class="field"><label>Exchange methods</label><div class="check-row"><label class="check-chip sell"><input type="checkbox" checked><span>Sell</span></label><label class="check-chip swap"><input type="checkbox"><span>Swap</span></label><label class="check-chip borrow"><input type="checkbox"><span>Borrow</span></label><label class="check-chip free"><input type="checkbox" checked><span>Free</span></label></div></div>
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px"><button class="btn btn-quiet" data-close>Cancel</button><button class="btn btn-primary" onclick="closeModals(); toast('Alert saved. We’ll notify you in-app and by email.')">Save alert</button></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="editModal" role="dialog" aria-modal="true" aria-labelledby="edTitle">
+  <div class="modal">
+    <button class="icon-btn x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <span class="us">US 10 · Edit listing</span>
+    <p class="eyebrow">Edit listing</p>
+    <h3 id="edTitle">Update details</h3>
+    <div style="display:grid; gap:14px; margin-top:16px">
+      <div class="field"><label>Item name</label><input class="input" id="edName"></div>
+      <div class="form-grid"><div class="field"><label>Price</label><input class="input" id="edPrice"></div><div class="field"><label>Condition</label><select class="input"><option>Like new</option><option>Good</option><option>Fair</option></select></div></div>
+      <div class="field"><label>Availability</label><select class="input"><option>Available</option><option>Pending pickup</option><option>Exchanged / sold</option></select></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; gap:10px; margin-top:20px"><button class="btn btn-danger" onclick="closeModals(); toast('Listing removed')"><svg class="arrow"><use href="#i-trash"/></svg> Remove</button><div style="display:flex; gap:10px"><button class="btn btn-quiet" data-close>Cancel</button><button class="btn btn-primary" onclick="closeModals(); toast('Listing updated')">Save changes</button></div></div>
+  </div>
+</div>
+
+<!-- ================= MOBILE NAV (shown at <=860px) ================= -->
+<nav class="tabbar" aria-label="Primary (mobile)">
+  <a href="#/home" data-tabnav="home"><svg aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></a>
+  <a href="#/browse" data-tabnav="browse"><svg aria-hidden="true"><use href="#i-search"/></svg><span>Browse</span></a>
+  <a href="#/sell" data-tabnav="sell" class="tb-sell"><span class="tb-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span>Sell</span></a>
+  <a href="#/messages" data-tabnav="messages"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Messages</span><span class="badge-dot">3</span></a>
+  <button type="button" id="moreBtn" data-tabnav="more" aria-controls="moreSheet" aria-expanded="false"><svg aria-hidden="true"><use href="#i-more"/></svg><span>More</span></button>
+</nav>
+
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="moreSheet" role="dialog" aria-modal="true" aria-labelledby="moreTitle">
+  <div class="sheet-handle" aria-hidden="true"></div>
+  <div class="sheet-head"><h2 class="sheet-title" id="moreTitle">More</h2><button class="icon-btn" type="button" data-sheet-close aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
+  <a class="more-me" href="#/my/listings"><span class="avatar">RB</span><span><strong>Riley B.</strong><span class="small muted">My Loop</span></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <ul class="more-list">
+    <li><a href="#/board" data-more="board"><span class="mi"><svg><use href="#i-users"/></svg></span>Community</a></li>
+    <li><a href="#/events" data-more="events"><span class="mi"><svg><use href="#i-cal"/></svg></span>Events</a></li>
+    <li><a href="#/my/listings" data-more="my/listings"><span class="mi"><svg><use href="#i-tag"/></svg></span>My listings</a></li>
+    <li><a href="#/my/saved" data-more="my/saved"><span class="mi"><svg><use href="#i-heart"/></svg></span>Saved</a></li>
+    <li><a href="#/my/alerts" data-more="my/alerts"><span class="mi"><svg><use href="#i-bell"/></svg></span>Item alerts</a></li>
+    <li><a href="#/my/borrowing" data-more="my/borrowing"><span class="mi"><svg><use href="#i-borrow"/></svg></span>Borrowing</a></li>
+    <li><a href="#/profile" data-more="profile"><span class="mi"><svg><use href="#i-star"/></svg></span>Seller profiles</a></li>
+    <li><a href="#/verify" data-more="verify"><span class="mi"><svg><use href="#i-verified"/></svg></span>Verify account</a></li>
+    <li><a href="#/stories" data-more="stories"><span class="mi"><svg><use href="#i-eye"/></svg></span>Feature map</a></li>
+    <li class="role-only" data-role="moderator"><a href="#/moderation" data-more="moderation"><span class="mi"><svg><use href="#i-flag"/></svg></span>Moderation</a></li>
+    <li class="role-only" data-role="admin"><a href="#/admin" data-more="admin"><span class="mi"><svg><use href="#i-chart"/></svg></span>Admin dashboard</a></li>
+  </ul>
+  <div class="more-demo" id="moreDemo"></div>
+</div>
+
+<div class="toast" id="toast"><svg><use href="#i-check"/></svg><span></span></div>
+
+<script src="js/app.js?v=2"></script>
+</body>
+</html>
