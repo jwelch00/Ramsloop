@@ -15,7 +15,7 @@
   &nbsp;·&nbsp;
   <a href="https://jwelch00.github.io/Ramsloop/#/stories">Feature map</a>
   &nbsp;·&nbsp;
-  <a href="https://github.com/jwelch00/Ramsloop/tree/full-version">Full 17-story version</a>
+  <a href="https://github.com/jwelch00/Ramsloop/tree/full-version">Original 17-story draft</a>
 </p>
 
 ![RamsLoop home page](docs/screenshots/home.jpg)
@@ -28,18 +28,37 @@ Every listing says exactly how the item changes hands: **sell, swap, borrow, fre
 This repo is a front-end mockup, built to show the screens and flows from our proposal.
 It runs entirely in the browser on sample data. There is no backend, so nothing you type is saved or sent anywhere.
 
-## The six user stories
+## The user stories
 
-The mockup is scoped to the six highest-priority stories from the proposal.
+The mockup covers the twelve highest-priority stories from the proposal: six from Sprint 1 and six added in Sprint 2.
 
-| Priority | Story | Theme | As a… | Where to see it |
-|:-:|---|---|---|---|
-| 1 | **US 9** · Create and publish listing | Listing & Exchange Management | Seller: create and publish a listing with photos, a description, condition, price, and exchange method so buyers can discover and evaluate my item. | [Sell or share](https://jwelch00.github.io/Ramsloop/#/sell) |
-| 2 | **US 6** · Item details | Listing & Exchange Management | Buyer: view item photos, descriptions, conditions, price, and availability so I can make an informed decision. | [Listing detail](https://jwelch00.github.io/Ramsloop/#/item/1) |
-| 3 | **US 1** · CSU affiliation verification | Trusted CSU Community | User: verify my CSU affiliation with my university email so I can use a trusted, student-only marketplace. | [Verify account](https://jwelch00.github.io/Ramsloop/#/verify) |
-| 4 | **US 11** · Select exchange method | Listing & Exchange Management | User: mark a listing as buy, sell, swap, borrow, or free so other users understand the proposed exchange. | Sell form, plus the tags on every listing |
-| 5 | **US 5** · Search and filter listings | Item Discovery | Buyer: search and filter listings by item type, price, condition, and exchange method so I can find suitable items quickly. | [Browse](https://jwelch00.github.io/Ramsloop/#/browse) |
-| 6 | **US 17** · Site performance dashboard | Platform Administration | Site administrator: access performance indicators to monitor the health of the site. | [Admin dashboard](https://jwelch00.github.io/Ramsloop/#/admin) |
+| Priority | Sprint | Story | Theme | As a… | Where to see it |
+|:-:|:-:|---|---|---|---|
+| 1 | 1 | **US 9** · Create and publish listing | Listing & Exchange Management | Seller: create and publish a listing with photos, a description, condition, price, and exchange method so buyers can discover and evaluate my item. | [Sell or share](https://jwelch00.github.io/Ramsloop/#/sell) |
+| 2 | 1 | **US 6** · Item details | Listing & Exchange Management | Buyer: view item photos, descriptions, conditions, price, and availability so I can make an informed decision. | [Listing detail](https://jwelch00.github.io/Ramsloop/#/item/1) |
+| 3 | 1 | **US 1** · CSU affiliation verification | Trusted CSU Community | User: verify my CSU affiliation with my university email so I can use a trusted, student-only marketplace. | [Verify account](https://jwelch00.github.io/Ramsloop/#/verify) |
+| 4 | 1 | **US 11** · Select exchange method | Listing & Exchange Management | User: mark a listing as buy, sell, swap, borrow, or free so other users understand the proposed exchange. | Sell form, plus the tags on every listing |
+| 5 | 1 | **US 5** · Search and filter listings | Item Discovery | Buyer: search and filter listings by item type, price, condition, and exchange method so I can find suitable items quickly. | [Browse](https://jwelch00.github.io/Ramsloop/#/browse) |
+| 6 | 1 | **US 17** · Site performance dashboard | Platform Administration | Site administrator: access performance indicators to monitor the health of the site. | [Admin dashboard](https://jwelch00.github.io/Ramsloop/#/admin) |
+| 7 | 2 | **US 13** · Private messaging | Communication & Community Engagement | User: send and receive messages within RamsLoop so I can coordinate an exchange without sharing my personal contact information. | [Messages](https://jwelch00.github.io/Ramsloop/#/messages) |
+| 8 | 2 | **US 10** · Edit, pause, or remove listings | Listing & Exchange Management | Seller: edit, pause, or remove my listing so the item's information and availability stay accurate. | [My listings](https://jwelch00.github.io/Ramsloop/#/my/listings) |
+| 9 | 2 | **US 3** · Report users or listings | Trusted CSU Community | User: report suspicious users or listings so administrators can investigate safety concerns. | Report link on [listings](https://jwelch00.github.io/Ramsloop/#/item/19), profiles, and messages |
+| 10 | 2 | **US 4** · Marketplace moderation | Trusted CSU Community | Moderator: review reports and remove fraudulent, inactive, or prohibited listings so RamsLoop stays trusted and safe. | [Moderator console](https://jwelch00.github.io/Ramsloop/#/moderation) |
+| 11 | 2 | **US 2** · Ratings and reviews | Trusted CSU Community | User: view another user's ratings and reviews from previous exchanges before exchanging with them. | [Seller profile](https://jwelch00.github.io/Ramsloop/#/profile/maya) |
+| 12 | 2 | **US 8** · Favorites list | Item Discovery | User: save listings to a favorites list so I can review items I'm interested in later. | [Favorites](https://jwelch00.github.io/Ramsloop/#/my/saved) |
+
+## Sprint 2
+
+Sprint 2 adds the next six stories by priority. The [feature map](https://jwelch00.github.io/Ramsloop/#/stories) lists each one's story points, impact, and acceptance criteria.
+
+- **Messages (US 13):** text messages and photo attachments, a 1,000-character limit with a counter, and no blank messages. Each sent message shows how long delivery took. Phone numbers and emails never appear on the page. A demo switch makes the next message fail so you can see the "Try again" button, which resends without retyping.
+- **My listings (US 10):** edit price, description, condition, photos, and exchange method. The listing ID and seller are locked. Missing or invalid fields show an error right away. Pause and reactivate take one click, and removing a listing asks you to confirm first. Paused and removed listings disappear from search immediately, and removed listings can't be edited or reactivated. Only the seller sees these controls.
+- **Report (US 3):** report a listing, a seller profile, or someone in a conversation. A reason is required, and new reports go straight into the moderator queue.
+- **Moderation (US 4):** switch *Viewing as* to *Moderator* to review reports. You can remove a listing, warn or suspend a user, or dismiss the report, with notes and a case log. Removing a listing takes it out of search and out of everyone's favorites.
+- **Ratings and reviews (US 2):** seller profiles show the average rating, the star breakdown, and reviews from completed exchanges. New users with no exchanges get a caution note instead.
+- **Favorites (US 8):** tap the heart on any listing. The Favorites tab shows photo, title, price, condition, and exchange method, along with a running count against the 100-listing limit. Favorites are private to you, and listings that stop being available are removed automatically.
+
+Acceptance criteria for US 3, US 4, and US 2 are still being written, so those screens follow the user story text.
 
 ## Screenshots
 
@@ -71,8 +90,8 @@ It also works on phones, with a bottom tab bar and slide-up filters:
 ## Demo tips
 
 - **Show user stories:** flip the switch in the top bar. A yellow tag appears beside each feature with the story it covers.
-- **Viewing as:** switch to *Site administrator* to see the **Admin** tab (US 17).
-- **Feature map:** the link in the top bar lists all six stories and jumps to each screen.
+- **Viewing as:** switch to *Moderator* for the **Moderation** tab (US 4), or *Site administrator* for the **Admin** tab (US 17).
+- **Feature map:** the link in the top bar lists all twelve stories and jumps to each screen.
 
 ## Run it yourself
 
@@ -91,14 +110,15 @@ Then go to <http://localhost:8000>.
 ```
 index.html       every screen (one page; the URL after # picks the screen)
 css/styles.css   all styling, including the phone layout
-js/app.js        sample listings, search and filters, page switching, admin charts
+js/app.js        sample data, search and filters, messaging, listing management,
+                 favorites, reports, moderation, page switching, admin charts
 assets/          fonts, photos, and textures
 docs/            logo and the screenshots on this page
 ```
 
 ## Full version
 
-The first version of the mockup covered all 17 stories from the proposal, including messaging, ratings and reviews, saved items, alerts, the community board, events, and moderation.
+The first version of the mockup covered all 17 stories from the proposal, including alerts, borrowing terms, the community board, and events, which haven't been brought into this version yet.
 It's saved under the [`full-version`](https://github.com/jwelch00/Ramsloop/tree/full-version) tag.
 
 ## Credits

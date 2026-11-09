@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RamsLoop — Buy, sell, swap, borrow &amp; give at CSU</title>
 <meta name="description" content="RamsLoop: a CSU-verified student marketplace for buying, selling, swapping, borrowing and giving away items. UI mockup.">
-<link rel="stylesheet" href="css/styles.css?v=3">
+<link rel="stylesheet" href="css/styles.css?v=4">
 </head>
 <body class="role-student">
 
@@ -70,6 +70,7 @@
       <label class="role-switch"><span>Viewing as</span>
         <select id="roleSelect" aria-label="Switch demo user type">
           <option value="student">Student (buyer / seller)</option>
+          <option value="moderator">Moderator</option>
           <option value="admin">Site administrator</option>
         </select>
       </label>
@@ -95,10 +96,13 @@
     <nav class="main-nav" aria-label="Primary">
       <a href="#/browse" data-nav="browse">Browse</a>
       <a href="#/sell" data-nav="sell">Sell or share</a>
+      <a href="#/moderation" data-nav="moderation" class="role-only" data-role="moderator">Moderation</a>
       <a href="#/admin" data-nav="admin" class="role-only" data-role="admin">Admin</a>
     </nav>
     <div class="header-actions">
-      <a href="#/verify" class="avatar" title="Riley B. · CSU verified" aria-label="Your account: CSU verification" style="text-decoration:none; margin-left:6px">RB</a>
+      <a class="icon-btn" href="#/my/saved" title="Favorites" aria-label="Favorites"><svg><use href="#i-heart"/></svg></a>
+      <a class="icon-btn hdr-msg" href="#/messages" title="Messages" aria-label="Messages"><svg><use href="#i-chat"/></svg><span class="badge-dot" id="msgBadge">2</span></a>
+      <a href="#/my/listings" class="avatar" title="My Loop (Riley B.)" aria-label="My Loop" style="text-decoration:none; margin-left:6px">RB</a>
     </div>
   </div>
 </header>
@@ -206,6 +210,8 @@
           <div class="trust-item"><svg><use href="#i-swap"/></svg><h4>Clear exchange terms <span class="us">US 11</span></h4><p>Every listing says up front whether it’s for sale, swap, loan, or free.</p></div>
           <div class="trust-item"><svg><use href="#i-eye"/></svg><h4>No-surprise listings <span class="us">US 6</span></h4><p>Photos, condition, price, and availability, all before you meet.</p></div>
           <div class="trust-item"><svg><use href="#i-pin"/></svg><h4>Campus pickup spots <span class="us">US 9</span></h4><p>Sellers choose a public campus meetup spot when they list.</p></div>
+          <div class="trust-item"><svg><use href="#i-lock"/></svg><h4>Private messaging <span class="us">US 13</span></h4><p>Plan the exchange in RamsLoop. Your phone and email stay private.</p></div>
+          <div class="trust-item"><svg><use href="#i-star"/></svg><h4>Ratings &amp; reports <span class="us">US 2, 3, 4</span></h4><p>Check reviews before you meet, and report anything sketchy to a moderator.</p></div>
         </div>
       </div>
       <div class="duo-frame">
@@ -393,6 +399,131 @@
 </section>
 
 <!-- =====================================================
+     MY LOOP: my listings (US 10) + favorites (US 8)
+     ===================================================== -->
+<section class="page" data-page="my">
+  <div class="page-hero tan">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:end; gap:20px; flex-wrap:wrap">
+      <div>
+        <p class="eyebrow">My Loop</p>
+        <h1>Hey, Riley.</h1>
+        <p class="subhead">Keep your listings up to date and come back to things you’ve saved.</p>
+      </div>
+      <a class="btn btn-primary" href="#/sell"><svg class="arrow"><use href="#i-plus"/></svg> New listing</a>
+    </div>
+  </div>
+  <div class="wrap my-layout">
+    <div class="tabs" role="tablist">
+      <button class="tab" data-tab="listings">My listings <span class="ct" id="myCt"></span></button>
+      <button class="tab" data-tab="saved">Favorites <span class="ct" id="savedCt"></span></button>
+    </div>
+
+    <div class="tabpane us-wrap" data-pane="listings">
+      <span class="us">US 10 · Edit, pause, or remove a listing</span>
+      <p class="owner-note"><svg><use href="#i-lock"/></svg> Only you can edit, pause, reactivate, or remove these listings. Paused and removed listings are hidden from search right away.</p>
+      <table class="table stack-sm">
+        <thead><tr><th>Item</th><th>Method</th><th>Status</th><th>Views</th><th style="text-align:right">Actions</th></tr></thead>
+        <tbody id="myListings"></tbody>
+      </table>
+    </div>
+
+    <div class="tabpane us-wrap" data-pane="saved">
+      <span class="us">US 8 · Favorites list</span>
+      <div class="saved-head">
+        <p class="owner-note" style="margin:0"><svg><use href="#i-lock"/></svg> Only you can see your favorites. They’re saved to your account, so they’re still here when you sign in on another device.</p>
+        <span class="saved-cap" id="savedCap"></span>
+      </div>
+      <div class="notice" id="savedNotice" hidden></div>
+      <div class="grid-listings" id="savedGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MESSAGES (US 13)
+     ===================================================== -->
+<section class="page" data-page="messages">
+  <div class="wrap">
+    <div class="inbox us-wrap">
+      <span class="us">US 13 · Private messaging</span>
+      <div class="convos">
+        <div class="c-search"><label class="sr-only" for="convoQ">Search messages</label><input class="input" id="convoQ" placeholder="Search messages"></div>
+        <div id="convoList"></div>
+      </div>
+      <div class="thread-pane">
+        <div class="tp-head">
+          <a class="icon-btn tp-back" href="#/messages" aria-label="Back to messages"><svg><use href="#i-back"/></svg></a>
+          <span class="avatar" id="tpAvatar"></span>
+          <div style="flex:1; min-width:0"><strong id="tpName"></strong> <span class="verified"><svg><use href="#i-verified"/></svg> Verified Ram</span><div class="small muted" id="tpRating"></div></div>
+          <a class="btn btn-quiet btn-sm" id="tpProfile" href="#/profile">Reviews</a>
+          <button class="icon-btn" data-report="user" title="Report user" aria-label="Report user"><svg><use href="#i-flag"/></svg></button>
+        </div>
+        <div class="tp-listing" id="tpListing"></div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <div>
+          <div class="attach-preview" id="attachPreview" hidden></div>
+          <form class="composer" id="composer" novalidate>
+            <label class="icon-btn attach-btn" title="Attach a photo" aria-label="Attach a photo"><input type="file" id="msgPhoto" accept="image/*" hidden><svg><use href="#i-upload"/></svg></label>
+            <label class="sr-only" for="msgInput">Message</label>
+            <textarea class="input" id="msgInput" rows="1" maxlength="1000" placeholder="Write a message…"></textarea>
+            <button class="btn btn-primary" id="sendBtn" type="submit" disabled><svg class="arrow"><use href="#i-send"/></svg> Send</button>
+          </form>
+          <div class="composer-foot">
+            <span id="msgHint" class="small muted">Text and photos. Up to 1,000 characters.</span>
+            <span class="char-ct" id="charCt">0 / 1,000</span>
+          </div>
+          <label class="demo-fail"><input type="checkbox" id="failNext"> Demo: make the next message fail to send</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     SELLER PROFILE · RATINGS & REVIEWS (US 2)
+     ===================================================== -->
+<section class="page" data-page="profile">
+  <div class="page-hero">
+    <div class="wrap profile-head" id="profileHead"></div>
+  </div>
+  <div class="wrap profile-layout">
+    <div class="us-wrap">
+      <span class="us">US 2 · Ratings &amp; reviews</span>
+      <div class="panel" id="ratingPanel"></div>
+      <div class="panel" id="reviewList"></div>
+    </div>
+    <div>
+      <p class="eyebrow">Active listings</p>
+      <div class="grid-listings three profile-grid" id="profileGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MODERATION (US 4)
+     ===================================================== -->
+<section class="page" data-page="moderation">
+  <div class="page-hero tan">
+    <div class="wrap"><p class="eyebrow">Moderator console</p><h1>Keep the Loop <span class="serif-i" style="font-weight:400">safe.</span></h1><p class="subhead">Review reports, then remove fraudulent, inactive, or prohibited listings.</p></div>
+  </div>
+  <div class="wrap mod-layout us-wrap">
+    <div>
+      <span class="us">US 4 · Review reports &amp; remove listings</span>
+      <div class="kpi-mini" id="modKpis"></div>
+      <div class="tabs" id="modTabs" style="margin-bottom:16px">
+        <button class="tab on" data-mtab="open">Needs review <span class="ct" id="mtOpen"></span></button>
+        <button class="tab" data-mtab="resolved">Resolved <span class="ct" id="mtDone"></span></button>
+      </div>
+      <table class="table stack-sm">
+        <thead><tr><th>Reported</th><th>Reason</th><th>Reports</th><th>Status</th><th></th></tr></thead>
+        <tbody id="modRows"></tbody>
+      </table>
+    </div>
+    <div class="panel mod-panel" id="modPanel"></div>
+  </div>
+</section>
+
+<!-- =====================================================
      VERIFY / SIGN IN
      ===================================================== -->
 <section class="page" data-page="verify">
@@ -495,14 +626,14 @@
      ===================================================== -->
 <section class="page" data-page="stories">
   <div class="page-hero tan">
-    <div class="wrap"><p class="eyebrow">Project Proposal · Team 1</p><h1>Feature map</h1><p class="subhead">The six highest-priority user stories from the proposal, in priority order, and where each one lives in this mockup.</p></div>
+    <div class="wrap"><p class="eyebrow">Project Proposal · Team 1</p><h1>Feature map</h1><p class="subhead">The twelve highest-priority user stories from the proposal, in priority order, and where each one lives in this mockup. Sprint 1 built the first six; Sprint 2 added the next six.</p></div>
   </div>
   <div class="wrap stories-layout">
     <table class="table story-table stack-sm">
-      <thead><tr><th>#</th><th>User story</th><th>Theme · Epic</th><th>Priority</th><th>Screen</th></tr></thead>
+      <thead><tr><th>#</th><th>User story</th><th>Theme · Epic</th><th>Priority</th><th>Sprint</th><th>Screen</th></tr></thead>
       <tbody id="storyRows"></tbody>
     </table>
-    <p class="small muted" style="margin-top:16px">Tip: turn on “Show user stories” in the top bar to see a yellow tag beside every feature on each screen.</p>
+    <p class="small muted" style="margin-top:16px">Click a Sprint 2 story to see its effort, impact, and acceptance criteria. Tip: turn on “Show user stories” in the top bar to see a yellow tag beside every feature on each screen.</p>
   </div>
 </section>
 
@@ -518,20 +649,88 @@
         <a class="brand" href="#/home"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#fff"/><path d="M11 20a9 9 0 0115.4-6.4" fill="none" stroke="#1E4D2B" stroke-width="3.2" stroke-linecap="round"/><path d="M29 20a9 9 0 01-15.4 6.4" fill="none" stroke="#006144" stroke-width="3.2" stroke-linecap="round"/><circle cx="26.4" cy="13.6" r="2.6" fill="#1E4D2B"/><circle cx="13.6" cy="26.4" r="2.6" fill="#006144"/></svg><span class="brand-word">Rams<span class="serif-i">Loop</span></span></a>
         <p style="margin:16px 0 0; max-width:34ch; font-size:15px">A student-to-student marketplace for the Colorado State community. Save money, cut waste, meet your neighbors.</p>
       </div>
-      <div><h5>Marketplace</h5><ul><li><a href="#/browse">Browse</a></li><li><a href="#/sell">Sell or share</a></li></ul></div>
-      <div><h5>Account</h5><ul><li><a href="#/verify">Verify account</a></li></ul></div>
-      <div><h5>Project</h5><ul><li><a href="#/admin">Admin dashboard</a></li><li><a href="#/stories">Feature map</a></li></ul></div>
+      <div><h5>Marketplace</h5><ul><li><a href="#/browse">Browse</a></li><li><a href="#/sell">Sell or share</a></li><li><a href="#/messages">Messages</a></li></ul></div>
+      <div><h5>Account</h5><ul><li><a href="#/my/listings">My listings</a></li><li><a href="#/my/saved">Favorites</a></li><li><a href="#/verify">Verify account</a></li></ul></div>
+      <div><h5>Project</h5><ul><li><a href="#/moderation">Moderator console</a></li><li><a href="#/admin">Admin dashboard</a></li><li><a href="#/stories">Feature map</a></li></ul></div>
     </div>
     <div class="foot-base"><span>RamsLoop · Project Proposal, Team 1 · UI mockup for coursework</span><span>Student project, not an official Colorado State University website.</span></div>
   </div>
 </footer>
+
+<!-- ================= MODALS ================= -->
+<div class="modal-backdrop" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="repTitle">
+  <div class="modal">
+    <button class="icon-btn x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <span class="us">US 3 · Report a user or listing</span>
+    <p class="eyebrow" style="color:#9b2f1d">Report</p>
+    <h3 id="repTitle">What’s wrong?</h3>
+    <p class="muted small" id="repTarget" style="margin:6px 0 0"></p>
+    <form id="reportForm" novalidate>
+      <div class="radio-list" id="repReasons">
+        <label><input type="radio" name="rr" value="Suspected scam or fraud"> Looks like a scam or fraud</label>
+        <label><input type="radio" name="rr" value="Asked to pay or talk off-platform"> Asked me to pay or talk off-platform</label>
+        <label><input type="radio" name="rr" value="Prohibited or unsafe item"> Prohibited or unsafe item</label>
+        <label><input type="radio" name="rr" value="Item may be stolen"> Item may be stolen</label>
+        <label><input type="radio" name="rr" value="Harassment or inappropriate messages"> Harassment or inappropriate messages</label>
+        <label><input type="radio" name="rr" value="Inactive / already gone"> Listing is inactive or already gone</label>
+      </div>
+      <p class="field-err" id="repErr" hidden>Pick a reason so a moderator knows what to look for.</p>
+      <div class="field"><label for="repNote">Anything else? (optional)</label><textarea class="input" id="repNote" style="min-height:80px" maxlength="500" placeholder="Add details to help our moderators"></textarea></div>
+      <p class="small muted" style="margin:12px 0">Reports are anonymous. The person you report won’t see your name.</p>
+      <div style="display:flex; justify-content:flex-end; gap:10px"><button type="button" class="btn btn-quiet" data-close>Cancel</button><button type="submit" class="btn btn-primary">Submit report</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="editModal" role="dialog" aria-modal="true" aria-labelledby="edTitle">
+  <div class="modal modal-wide">
+    <button class="icon-btn x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <span class="us">US 10 · Edit listing</span>
+    <p class="eyebrow">Edit listing</p>
+    <h3 id="edTitle">Update details</h3>
+    <form id="editForm" novalidate>
+      <div class="locked-row">
+        <div><span class="k">Listing ID</span><span class="v" id="edId"></span></div>
+        <div><span class="k">Seller</span><span class="v">Riley B. (you)</span></div>
+        <span class="small muted"><svg><use href="#i-lock"/></svg> Can’t be changed</span>
+      </div>
+      <div class="field"><label>Photos</label><div class="photo-row ed-photos" id="edPhotos"></div></div>
+      <div class="field"><label for="edName">Item name</label><input class="input" id="edName" maxlength="80"><p class="field-err" data-err="name" hidden></p></div>
+      <div class="form-grid">
+        <div class="field"><label for="edPrice">Price ($)</label><input class="input" id="edPrice" inputmode="decimal"><p class="field-err" data-err="price" hidden></p></div>
+        <div class="field"><label for="edCond">Condition</label><select class="input" id="edCond"><option>New</option><option>Like new</option><option>Good</option><option>Fair</option></select></div>
+      </div>
+      <div class="field"><label for="edDesc">Description</label><textarea class="input" id="edDesc" maxlength="1000"></textarea><p class="field-err" data-err="desc" hidden></p></div>
+      <div class="field"><label>Exchange method</label>
+        <div class="check-row" id="edX">
+          <label class="check-chip sell"><input type="checkbox" value="sell"><span>Sell</span></label>
+          <label class="check-chip swap"><input type="checkbox" value="swap"><span>Swap</span></label>
+          <label class="check-chip borrow"><input type="checkbox" value="borrow"><span>Borrow</span></label>
+          <label class="check-chip free"><input type="checkbox" value="free"><span>Free</span></label>
+        </div>
+        <p class="field-err" data-err="x" hidden></p>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px"><button type="button" class="btn btn-quiet" data-close>Cancel</button><button type="submit" class="btn btn-primary">Save changes</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="removeModal" role="alertdialog" aria-modal="true" aria-labelledby="rmTitle" aria-describedby="rmBody">
+  <div class="modal">
+    <span class="us">US 10 · Confirm removal</span>
+    <p class="eyebrow" style="color:#9b2f1d">Remove listing</p>
+    <h3 id="rmTitle">Remove this listing?</h3>
+    <p class="muted" id="rmBody" style="margin:8px 0 20px"></p>
+    <div style="display:flex; justify-content:flex-end; gap:10px"><button type="button" class="btn btn-quiet" data-close>Cancel</button><button type="button" class="btn btn-danger" id="rmConfirm"><svg class="arrow"><use href="#i-trash"/></svg> Remove listing</button></div>
+  </div>
+</div>
 
 <!-- ================= MOBILE NAV (shown at <=860px) ================= -->
 <nav class="tabbar" aria-label="Primary (mobile)">
   <a href="#/home" data-tabnav="home"><svg aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></a>
   <a href="#/browse" data-tabnav="browse"><svg aria-hidden="true"><use href="#i-search"/></svg><span>Browse</span></a>
   <a href="#/sell" data-tabnav="sell" class="tb-sell"><span class="tb-plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></span><span>Sell</span></a>
-  <a href="#/verify" data-tabnav="verify"><svg aria-hidden="true"><use href="#i-verified"/></svg><span>Verify</span></a>
+  <a href="#/messages" data-tabnav="messages"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Messages</span><span class="badge-dot" id="tabMsgBadge">2</span></a>
   <button type="button" id="moreBtn" data-tabnav="more" aria-controls="moreSheet" aria-expanded="false"><svg aria-hidden="true"><use href="#i-more"/></svg><span>More</span></button>
 </nav>
 
@@ -539,9 +738,13 @@
 <div class="sheet" id="moreSheet" role="dialog" aria-modal="true" aria-labelledby="moreTitle">
   <div class="sheet-handle" aria-hidden="true"></div>
   <div class="sheet-head"><h2 class="sheet-title" id="moreTitle">More</h2><button class="icon-btn" type="button" data-sheet-close aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
-  <a class="more-me" href="#/verify"><span class="avatar">RB</span><span><strong>Riley B.</strong><span class="small muted">CSU verified</span></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <a class="more-me" href="#/my/listings"><span class="avatar">RB</span><span><strong>Riley B.</strong><span class="small muted">My Loop</span></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
   <ul class="more-list">
+    <li><a href="#/my/listings" data-more="my/listings"><span class="mi"><svg><use href="#i-tag"/></svg></span>My listings</a></li>
+    <li><a href="#/my/saved" data-more="my/saved"><span class="mi"><svg><use href="#i-heart"/></svg></span>Favorites</a></li>
+    <li><a href="#/verify" data-more="verify"><span class="mi"><svg><use href="#i-verified"/></svg></span>Verify account</a></li>
     <li><a href="#/stories" data-more="stories"><span class="mi"><svg><use href="#i-eye"/></svg></span>Feature map</a></li>
+    <li class="role-only" data-role="moderator"><a href="#/moderation" data-more="moderation"><span class="mi"><svg><use href="#i-flag"/></svg></span>Moderation</a></li>
     <li class="role-only" data-role="admin"><a href="#/admin" data-more="admin"><span class="mi"><svg><use href="#i-chart"/></svg></span>Admin dashboard</a></li>
   </ul>
   <div class="more-demo" id="moreDemo"></div>
@@ -549,6 +752,6 @@
 
 <div class="toast" id="toast"><svg><use href="#i-check"/></svg><span></span></div>
 
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=4"></script>
 </body>
 </html>
