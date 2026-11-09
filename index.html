@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RamsLoop — Buy, sell, swap, borrow &amp; give at CSU</title>
 <meta name="description" content="RamsLoop: a CSU-verified student marketplace for buying, selling, swapping, borrowing and giving away items. UI mockup.">
-<link rel="stylesheet" href="css/styles.css?v=4">
+<link rel="stylesheet" href="css/styles.css?v=5">
 </head>
 <body class="role-student">
 
@@ -39,6 +39,7 @@
     <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
     <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8.5" r="3.3"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><path d="M15.5 5.5a3.2 3.2 0 010 6.2M17.5 14.8c1.8.6 3.1 2.2 3.5 4.7"/></g></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C4 11 9 4.5 20 4c.5 10.5-6 15.5-15 15z"/><path d="M5 19c3-5 6.5-8 10-10"/></g></symbol>
+    <symbol id="i-block" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></g></symbol>
     <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></g></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.5l2.6 5.5 6 .7-4.4 4.1 1.2 5.9L12 16.8l-5.4 2.9 1.2-5.9L3.4 9.7l6-.7z"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M7.5 15l3.5-4 3 2.5 5-6"/></g></symbol>
@@ -457,19 +458,21 @@
           <div style="flex:1; min-width:0"><strong id="tpName"></strong> <span class="verified"><svg><use href="#i-verified"/></svg> Verified Ram</span><div class="small muted" id="tpRating"></div></div>
           <a class="btn btn-quiet btn-sm" id="tpProfile" href="#/profile">Reviews</a>
           <button class="icon-btn" data-report="user" title="Report user" aria-label="Report user"><svg><use href="#i-flag"/></svg></button>
+          <button class="icon-btn block-btn" id="tpBlock" type="button" title="Block user" aria-label="Block user" aria-pressed="false"><svg><use href="#i-block"/></svg></button>
         </div>
         <div class="tp-listing" id="tpListing"></div>
         <div class="msgs" id="msgs" aria-live="polite"></div>
         <div>
+          <div class="notice warn block-note" id="blockNote" role="status" hidden></div>
           <div class="attach-preview" id="attachPreview" hidden></div>
           <form class="composer" id="composer" novalidate>
-            <label class="icon-btn attach-btn" title="Attach a photo" aria-label="Attach a photo"><input type="file" id="msgPhoto" accept="image/*" hidden><svg><use href="#i-upload"/></svg></label>
+            <label class="icon-btn attach-btn" title="Attach photos (up to 4)" aria-label="Attach photos, up to 4"><input type="file" id="msgPhoto" accept="image/jpeg,image/png" multiple hidden><svg><use href="#i-upload"/></svg></label>
             <label class="sr-only" for="msgInput">Message</label>
             <textarea class="input" id="msgInput" rows="1" maxlength="1000" placeholder="Write a message…"></textarea>
             <button class="btn btn-primary" id="sendBtn" type="submit" disabled><svg class="arrow"><use href="#i-send"/></svg> Send</button>
           </form>
           <div class="composer-foot">
-            <span id="msgHint" class="small muted">Text and photos. Up to 1,000 characters.</span>
+            <span id="msgHint" class="small muted">Up to 1,000 characters and 4 photos (JPG or PNG, 10 MB each).</span>
             <span class="char-ct" id="charCt">0 / 1,000</span>
           </div>
           <label class="demo-fail"><input type="checkbox" id="failNext"> Demo: make the next message fail to send</label>
@@ -511,11 +514,20 @@
       <span class="us">US 4 · Review reports &amp; remove listings</span>
       <div class="kpi-mini" id="modKpis"></div>
       <div class="tabs" id="modTabs" style="margin-bottom:16px">
-        <button class="tab on" data-mtab="open">Needs review <span class="ct" id="mtOpen"></span></button>
+        <button class="tab on" data-mtab="open"><span class="lbl-long">Needs review</span><span class="lbl-short">Open</span> <span class="ct" id="mtOpen"></span></button>
         <button class="tab" data-mtab="resolved">Resolved <span class="ct" id="mtDone"></span></button>
+        <button class="tab" data-mtab="audit">Audit log <span class="ct" id="mtAudit"></span></button>
+      </div>
+      <div class="mod-filters" id="modFilters">
+        <label class="sr-only" for="mfKind">Type</label>
+        <select class="input" id="mfKind"><option value="">All types</option><option value="listing">Listings</option><option value="user">User profiles</option></select>
+        <label class="sr-only" for="mfReason">Reason</label>
+        <select class="input" id="mfReason"><option value="">All reasons</option></select>
+        <label class="sr-only" for="mfSort">Sort</label>
+        <select class="input" id="mfSort"><option value="new">Newest first</option><option value="sev">Highest severity first</option></select>
       </div>
       <table class="table stack-sm">
-        <thead><tr><th>Reported</th><th>Reason</th><th>Reports</th><th>Status</th><th></th></tr></thead>
+        <thead id="modHead"><tr><th>Reported</th><th>Reason</th><th>Reports</th><th>Status</th><th></th></tr></thead>
         <tbody id="modRows"></tbody>
       </table>
     </div>
@@ -651,7 +663,7 @@
       </div>
       <div><h5>Marketplace</h5><ul><li><a href="#/browse">Browse</a></li><li><a href="#/sell">Sell or share</a></li><li><a href="#/messages">Messages</a></li></ul></div>
       <div><h5>Account</h5><ul><li><a href="#/my/listings">My listings</a></li><li><a href="#/my/saved">Favorites</a></li><li><a href="#/verify">Verify account</a></li></ul></div>
-      <div><h5>Project</h5><ul><li><a href="#/moderation">Moderator console</a></li><li><a href="#/admin">Admin dashboard</a></li><li><a href="#/stories">Feature map</a></li></ul></div>
+      <div><h5>Project</h5><ul><li><a href="#/moderation" data-as="moderator">Moderator console</a></li><li><a href="#/admin">Admin dashboard</a></li><li><a href="#/stories">Feature map</a></li></ul></div>
     </div>
     <div class="foot-base"><span>RamsLoop · Project Proposal, Team 1 · UI mockup for coursework</span><span>Student project, not an official Colorado State University website.</span></div>
   </div>
@@ -666,18 +678,41 @@
     <h3 id="repTitle">What’s wrong?</h3>
     <p class="muted small" id="repTarget" style="margin:6px 0 0"></p>
     <form id="reportForm" novalidate>
-      <div class="radio-list" id="repReasons">
-        <label><input type="radio" name="rr" value="Suspected scam or fraud"> Looks like a scam or fraud</label>
-        <label><input type="radio" name="rr" value="Asked to pay or talk off-platform"> Asked me to pay or talk off-platform</label>
-        <label><input type="radio" name="rr" value="Prohibited or unsafe item"> Prohibited or unsafe item</label>
-        <label><input type="radio" name="rr" value="Item may be stolen"> Item may be stolen</label>
-        <label><input type="radio" name="rr" value="Harassment or inappropriate messages"> Harassment or inappropriate messages</label>
-        <label><input type="radio" name="rr" value="Inactive / already gone"> Listing is inactive or already gone</label>
+      <div class="radio-list" id="repReasons" role="radiogroup" aria-label="Reason"></div>
+      <p class="field-err" id="repErr" role="alert" hidden>Pick a reason so a moderator knows what to look for.</p>
+      <div class="field">
+        <label for="repNote">Details (optional)</label>
+        <textarea class="input" id="repNote" style="min-height:80px" placeholder="What did you notice? Up to 300 words."></textarea>
+        <div class="rep-foot"><span class="field-err" id="repNoteErr" role="alert" hidden></span><span class="char-ct" id="repWords">0 / 300 words</span></div>
       </div>
-      <p class="field-err" id="repErr" hidden>Pick a reason so a moderator knows what to look for.</p>
-      <div class="field"><label for="repNote">Anything else? (optional)</label><textarea class="input" id="repNote" style="min-height:80px" maxlength="500" placeholder="Add details to help our moderators"></textarea></div>
+      <div class="field">
+        <span class="label">Attachments (optional)</span>
+        <div class="rep-files" id="repFileList"></div>
+        <label class="btn btn-quiet btn-sm rep-attach" id="repAttach"><input type="file" id="repFiles" accept="image/*,.pdf" multiple hidden><svg class="arrow"><use href="#i-upload"/></svg> Add screenshots (up to 3)</label>
+      </div>
       <p class="small muted" style="margin:12px 0">Reports are anonymous. The person you report won’t see your name.</p>
-      <div style="display:flex; justify-content:flex-end; gap:10px"><button type="button" class="btn btn-quiet" data-close>Cancel</button><button type="submit" class="btn btn-primary">Submit report</button></div>
+      <div class="notice warn" id="repFail" role="alert" hidden><svg><use href="#i-x"/></svg><span>Your report didn’t send because the connection timed out. Everything you entered is still here, so just try again.</span></div>
+      <label class="demo-fail"><input type="checkbox" id="repFailNext"> Demo: make this report fail to send</label>
+      <div style="display:flex; justify-content:flex-end; gap:10px"><button type="button" class="btn btn-quiet" data-close>Cancel</button><button type="submit" class="btn btn-primary" id="repSubmit">Submit report</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modActModal" role="dialog" aria-modal="true" aria-labelledby="maTitle" aria-describedby="maBody">
+  <div class="modal">
+    <button class="icon-btn x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <span class="us">US 4 · Moderator action</span>
+    <p class="eyebrow" id="maEyebrow" style="color:#9b2f1d"></p>
+    <h3 id="maTitle"></h3>
+    <p class="muted small" id="maBody" style="margin:6px 0 0"></p>
+    <form id="modActForm" novalidate>
+      <div id="maReasonWrap">
+        <div class="radio-list compact" id="maReasons" role="radiogroup" aria-label="Removal reason"></div>
+        <p class="field-err" id="maErr" role="alert" hidden>Pick a removal reason. It’s included in the email to the seller.</p>
+      </div>
+      <div class="field" style="margin-top:14px"><label for="maNote">Moderator note (optional)</label><textarea class="input" id="maNote" style="min-height:70px" placeholder="Saved to the audit log"></textarea></div>
+      <p class="small muted" style="margin:12px 0">Logged as MOD-0142 with the time and the case.</p>
+      <div style="display:flex; justify-content:flex-end; gap:10px"><button type="button" class="btn btn-quiet" data-close>Cancel</button><button type="submit" class="btn btn-danger" id="maConfirm">Confirm</button></div>
     </form>
   </div>
 </div>
@@ -752,6 +787,6 @@
 
 <div class="toast" id="toast"><svg><use href="#i-check"/></svg><span></span></div>
 
-<script src="js/app.js?v=4"></script>
+<script src="js/app.js?v=5"></script>
 </body>
 </html>

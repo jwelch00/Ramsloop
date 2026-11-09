@@ -51,14 +51,14 @@ The mockup covers the twelve highest-priority stories from the proposal: six fro
 
 Sprint 2 adds the next six stories by priority. The [feature map](https://jwelch00.github.io/Ramsloop/#/stories) lists each one's story points, impact, and acceptance criteria.
 
-- **Messages (US 13):** text messages and photo attachments, a 1,000-character limit with a counter, and no blank messages. Each sent message shows how long delivery took. Phone numbers and emails never appear on the page. A demo switch makes the next message fail so you can see the "Try again" button, which resends without retyping.
+- **Messages (US 13):** text messages with up to 4 photos (JPG or PNG, 10 MB each), a 1,000-character limit with a counter, and no blank messages. Each sent message shows how long delivery took. Phone numbers and emails never appear on the page, and typing one shows a reminder that you don't need to share it. The inbox stays newest first, with unread badges and search. You can report or block someone from the conversation, and blocked users can't send you new messages. A demo switch makes the next message fail so you can see the "Try again" button, which resends without retyping.
 - **My listings (US 10):** edit price, description, condition, photos, and exchange method. The listing ID and seller are locked. Missing or invalid fields show an error right away. Pause and reactivate take one click, and removing a listing asks you to confirm first. Paused and removed listings disappear from search immediately, and removed listings can't be edited or reactivated. Only the seller sees these controls.
-- **Report (US 3):** report a listing, a seller profile, or someone in a conversation. A reason is required, and new reports go straight into the moderator queue.
-- **Moderation (US 4):** switch *Viewing as* to *Moderator* to review reports. You can remove a listing, warn or suspend a user, or dismiss the report, with notes and a case log. Removing a listing takes it out of search and out of everyone's favorites.
+- **Report (US 3):** report a listing, a seller profile, or someone in a conversation. Listings and profiles each have their own set list of reasons, and picking one is required. You can add up to 300 words (with a live word count) and screenshots. The confirmation shows the case number, and the report goes straight into the moderator queue. You can only report the same listing or person once; trying again shows a notice instead. A demo switch makes the report fail so you can see the error, and canceling discards it.
+- **Moderation (US 4):** switch *Viewing as* to *Moderator* to review reports. Filter the queue by type and reason, and sort it by date or severity. Each report links to the listing or profile and shows the reporter's details and attachments. Removing a listing (from the console or right on the listing page) requires a removal reason. It takes the listing out of search and everyone's favorites, and the seller is emailed the reason. Dismissing a report archives it. Every action goes through a dialog you can back out of, and it's written to the **Audit log** tab with a timestamp and moderator ID. Students who open the console are sent back to Home.
 - **Ratings and reviews (US 2):** seller profiles show the average rating, the star breakdown, and reviews from completed exchanges. New users with no exchanges get a caution note instead.
 - **Favorites (US 8):** tap the heart on any listing. The Favorites tab shows photo, title, price, condition, and exchange method, along with a running count against the 100-listing limit. Favorites are private to you, and listings that stop being available are removed automatically.
 
-Acceptance criteria for US 3, US 4, and US 2 are still being written, so those screens follow the user story text.
+Acceptance criteria for US 2 are still being written, so that screen follows the user story text.
 
 ## Screenshots
 
@@ -90,7 +90,7 @@ It also works on phones, with a bottom tab bar and slide-up filters:
 ## Demo tips
 
 - **Show user stories:** flip the switch in the top bar. A yellow tag appears beside each feature with the story it covers.
-- **Viewing as:** switch to *Moderator* for the **Moderation** tab (US 4), or *Site administrator* for the **Admin** tab (US 17).
+- **Viewing as:** switch to *Moderator* for the **Moderation** tab and the remove button on listings (US 4), or *Site administrator* for the **Admin** tab (US 17).
 - **Feature map:** the link in the top bar lists all twelve stories and jumps to each screen.
 
 ## Run it yourself
